@@ -1,0 +1,53 @@
+import {
+  USER_SIGNIN_FAIL,
+  USER_SIGNIN_REQUEST,
+  USER_SIGNIN_SUCCESS,
+  USER_REGISTER_REQUEST,
+  USER_REGISTER_SUCCESS,
+  USER_REGISTER_FAIL,
+  GOOGLE_AUTH,
+} from "../_constants/userConstants";
+const axios = require("axios");
+const Cookie = require("js-cookie");
+
+const signin = (dataToSubmit) => async (dispatch) => {
+  dispatch({ type: USER_SIGNIN_REQUEST, payload: dataToSubmit });
+  try {
+    const { data } = await axios.post("/user/login", dataToSubmit);
+    dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
+    Cookie.set("userInfo", JSON.stringify(data));
+  } catch (error) {
+    dispatch({ type: USER_SIGNIN_FAIL, payload: error.message });
+  }
+};
+
+const register = (name, email, password, avatar, phone, address) => async (
+  dispatch
+) => {
+  dispatch({
+    type: USER_REGISTER_REQUEST,
+    payload: { name, email, password, avatar, phone, address },
+  });
+  try {
+    const { data } = await axios.post("/user/register", {
+      name,
+      email,
+      password,
+      avatar,
+      phone,
+      address,
+    });
+    dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
+    Cookie.set("userInfo", JSON.stringify(data));
+  } catch (error) {
+    dispatch({ type: USER_REGISTER_FAIL, payload: error.message });
+  }
+};
+
+const saveUser = (name, email, avatar, token) => (dispatch) => {
+  dispatch({
+    type: GOOGLE_AUTH,
+    payload: { name, email, avatar, token },
+  });
+};
+export { signin, register, saveUser };

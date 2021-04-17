@@ -38,14 +38,11 @@ export default function SignUp(props) {
   const submitHandler = async (e) => {
     e.preventDefault();
     await dispatch(
-      register(name, email, password, avatar, phone, address).then((response) =>
-        console.log(response)
-      )
-    );
+      register(name, email, password, avatar, phone, address));
     setTimeout(
       history.goBack(),
 
-      5000
+      2000
     );
   };
 

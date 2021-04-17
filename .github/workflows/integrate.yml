@@ -1,4 +1,4 @@
-name:  Kitenge CI/CD
+name: Kitenge CI/CD
 on:
   pull_request:
     branches: [main]

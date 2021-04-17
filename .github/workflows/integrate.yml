@@ -1,0 +1,17 @@
+node: Kitenge CI/CD
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  test_pull_request:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - run: yarn add
+      - run: yarn run test
+      - run: yarn run build
+

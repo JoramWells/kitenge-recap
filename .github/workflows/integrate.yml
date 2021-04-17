@@ -12,6 +12,5 @@ jobs:
         with:
           node-version: 14
       - run: yarn add
-      - run: yarn run test
       - run: yarn run build
 

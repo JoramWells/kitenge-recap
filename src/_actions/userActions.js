@@ -29,16 +29,25 @@ const register = (name, email, password, avatar, phone, address) => async (
     payload: { name, email, password, avatar, phone, address },
   });
   try {
-    const { data } = await axios.post("/user/register", {
+    await axios.post("/user/register", {
       name,
       email,
       password,
       avatar,
       phone,
       address,
-    });
-    dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
-    Cookie.set("userInfo", JSON.stringify(data));
+    }).then(response=>{
+      console.log(response.data)
+      if(response.data.success == 0){
+    dispatch({ type: USER_REGISTER_FAIL, payload: 'User already exists' });
+      }
+    dispatch({ type: USER_REGISTER_SUCCESS, payload: response.data });
+    Cookie.set("userInfo", JSON.stringify(response.data))
+
+
+    }
+      
+      ).catch(err=>console.log(err))
   } catch (error) {
     dispatch({ type: USER_REGISTER_FAIL, payload: error.message });
   }

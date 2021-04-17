@@ -28,19 +28,19 @@ export default function SignUp(props) {
   const redirect = props.location.search
     ? props.location.search.split("=")[1]
     : "/";
-  useEffect(() => {
-    if (userInfo)
-      return () => {
-        history.goBack();
-      };
-  }, [userInfo]);
+  // useEffect(() => {
+  //   if (userInfo)
+  //     return () => {
+  //       history.goBack();
+  //     };
+  // }, [userInfo]);
 
   const submitHandler = async (e) => {
     e.preventDefault();
     await dispatch(
       register(name, email, password, avatar, phone, address));
       if(!userInfo)return
-      if(userInfo.success == 1){
+      if(userInfo.success == 0){
         console.log('success')
       }
 

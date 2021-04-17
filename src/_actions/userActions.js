@@ -40,9 +40,14 @@ const register = (name, email, password, avatar, phone, address) => async (
       console.log(response.data)
       if(response.data.success == 0){
     dispatch({ type: USER_REGISTER_FAIL, payload: 'User already exists' });
+    Cookie.set("userFailure", JSON.stringify(response.data),{
+      expires:1/28800
+    })
+      }else{
+        dispatch({ type: USER_REGISTER_SUCCESS, payload: response.data });
+        Cookie.set("userInfo", JSON.stringify(response.data))
       }
-    dispatch({ type: USER_REGISTER_SUCCESS, payload: response.data });
-    Cookie.set("userInfo", JSON.stringify(response.data))
+
 
 
     }

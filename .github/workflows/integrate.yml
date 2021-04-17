@@ -1,4 +1,4 @@
-node: Kitenge CI/CD
+node: Client CI/CD
 on:
   pull_request:
     branches: [main]

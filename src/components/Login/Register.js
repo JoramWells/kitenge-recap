@@ -39,11 +39,11 @@ export default function SignUp(props) {
     e.preventDefault();
     await dispatch(
       register(name, email, password, avatar, phone, address));
-    setTimeout(
-      history.goBack(),
+      if(!userInfo)return
+      if(userInfo.success == 1){
+        console.log('success')
+      }
 
-      2000
-    );
   };
 
   const responseSuccess = (response) => {

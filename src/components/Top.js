@@ -10,7 +10,18 @@ export default function Top() {
         color: "white",
       }}
     >
-      <h3 style={{ color: "white" }}>Annies` Online Mall</h3>
+      <ul
+        style={{
+          color: "white",
+          listStyle: "none",
+          display: "flex",
+          justifyContent: "space-around",
+        }}
+      >
+        <li>Annies' Online Mall</li>
+
+        <li>Phone</li>
+      </ul>
     </div>
   );
 }

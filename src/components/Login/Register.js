@@ -14,6 +14,7 @@ import {
 } from "@ant-design/icons";
 
 export default function SignUp(props) {
+  const CLIENT_ID = "266388441735-5a4sfpj0lpk8nvjkf52ppoqqul0139st.apps.googleusercontent.com"
   const history = useHistory();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -30,16 +31,22 @@ export default function SignUp(props) {
   useEffect(() => {
     if (userInfo)
       return () => {
-        props.history.push(redirect);
+        history.goBack();
       };
   }, [userInfo]);
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    dispatch(
-      register(name, email, password, avatar, address, phone)
-    ).then((response) => console.log(response));
-    // history.goBack();
+    await dispatch(
+      register(name, email, password, avatar, phone, address).then((response) =>
+        console.log(response)
+      )
+    );
+    setTimeout(
+      history.goBack(),
+
+      5000
+    );
   };
 
   const responseSuccess = (response) => {
@@ -97,8 +104,8 @@ export default function SignUp(props) {
 
             <Form.Item required>
               <Input
-                id="location"
-                name="location"
+                id="address"
+                name="address"
                 placeholder="Enter your location"
                 prefix={<StopOutlined />}
                 value={address}
@@ -189,12 +196,13 @@ export default function SignUp(props) {
               </Col>
               <Col>
                 <GoogleLogin
-                  clientId="266388441735-5a4sfpj0lpk8nvjkf52ppoqqul0139st.apps.googleusercontent.com"
+                  clientId= {CLIENT_ID}
                   buttonText="Login"
                   onSuccess={responseSuccess}
                   onFailure={responseFailure}
                   isSignedIn={true}
                   style={{ display: "block" }}
+                  
                 />
               </Col>
             </Row>

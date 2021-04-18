@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Box from "@material-ui/core/Box";
 import { useDispatch, useSelector } from "react-redux";
 import { saveProduct } from "../../_actions/productActions";
 import { UploadOutlined } from "@ant-design/icons";
@@ -15,20 +14,10 @@ import {
   Select,
   message,
   Upload,
+  Card
 } from "antd";
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
-        xpresscloud.com
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+
 
 const { Title, Text } = Typography;
 const { Option } = Select;
@@ -101,8 +90,8 @@ export default function AddProduct(props) {
 
   return (
     <Row justify="space-around" align="middle" style={{ marginTop: "40px" }}>
-      <Col span={10}>
-        <Title level={3} style={{ textAlign: "center" }}>
+       <Card>
+       <Title level={3} style={{ textAlign: "center" }}>
           Add product
         </Title>
         <Form layout="vertical" name="basic" encType="multipart/form-data">
@@ -177,10 +166,8 @@ export default function AddProduct(props) {
             </Col>
           </Row>
         </Form>
-        <Box mt={5}>
-          <Copyright />
-        </Box>
-      </Col>
+
+       </Card>
     </Row>
   );
 }

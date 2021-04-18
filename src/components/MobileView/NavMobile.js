@@ -66,7 +66,7 @@ export default function NavMobile() {
             </Menu.Item>
             <Menu.Item
               icon={
-                <Badge dot count={0} style={{ backgroundColor: "green" }}>
+                <Badge  count={0} style={{ backgroundColor: "green" }}>
                   Inbox
                 </Badge>
               }

@@ -121,12 +121,11 @@ function RightMenu() {
             </SubMenu>
           </Menu>
           <Modal
-            title="Basic Modal"
             visible={visible}
             onOk={handleOk}
             onCancel={handleCancel}
           >
-            {cartItems.map((product) => {
+            {cartItems.map((product) => (
               <Row justify="space-around" align="middle">
                 <Col>
                   <Image
@@ -141,8 +140,8 @@ function RightMenu() {
                 <Col key={product.product}>
                   <Text>{product.price}</Text>
                 </Col>
-              </Row>;
-            })}
+              </Row>
+            ))}
           </Modal>
         </Space>
       );

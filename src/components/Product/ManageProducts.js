@@ -6,7 +6,7 @@ import {
   listProducts,
   updateProduct,
 } from "../../_actions/productActions";
-import { DownOutlined, UploadOutlined } from "@ant-design/icons";
+import {  UploadOutlined } from "@ant-design/icons";
 
 
 
@@ -113,6 +113,7 @@ export default function ManageProducts(props) {
 
               <Button onClick={() => showModal(...posts)}>Edit</Button>
 
+          <Button>Delete</Button>
   
   
         </Space>

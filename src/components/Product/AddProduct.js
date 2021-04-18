@@ -132,7 +132,7 @@ export default function AddProduct(props) {
             onChange={(e) => setCategory(e.target.value)}
             rules={[{ message: "Enter image" }]}
           >
-            <Input prefix={<CaretRightOutlined style={{backgroundColor:"whitesmoke"}} />} placeholder="shoes, shirt, kitchen" />
+            <Input prefix={<CaretRightOutlined style={{color:"#707070"}} />} placeholder="shoes, shirt, kitchen" />
           </Form.Item>
           <Form.Item
             name="description"

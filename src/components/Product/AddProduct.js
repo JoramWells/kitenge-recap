@@ -90,81 +90,71 @@ export default function AddProduct(props) {
 
   return (
     <Row justify="space-around" align="middle" style={{ marginTop: "40px" }}>
-       <Card>
-       <Title level={3} style={{ textAlign: "center" }}>
-          Add product
-        </Title>
-        <Form layout="vertical" name="basic" encType="multipart/form-data">
+       <Card style={{width:"25rem"}}>
+         <Title level={3}>
+           Add product
+         </Title>
+ 
+        <Form layout="vertical" size="large" encType="multipart/form-data">
           <Form.Item
             required
             id="name"
-            label="Item name"
             name="name"
             value={name}
             rules={[{ message: "Enter item name", value: { name } }]}
             onChange={(e) => setName(e.target.value)}
           >
-            <Input />
+            <Input placeholder="Item name" />
           </Form.Item>
           <Form.Item
             name="Price"
-            label="price"
             name="price"
             value={price}
             rules={[{ message: "Enter Item price" }]}
             onChange={(e) => setPrice(e.target.value)}
           >
-            <Input />
+            <Input placeholder="Enter price e.g 2030" />
           </Form.Item>
           <Form.Item
             id="shop"
-            label="Online shop"
             name="shop"
             value={shop}
             rules={[{ message: "Enter shop" }]}
             onChange={(e) => setShop(e.target.value)}
           >
-            <Input />
+            <Input placeholder="Shop name" />
           </Form.Item>
 
           <Form.Item
             name="category"
-            label="category"
             id="category"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
             rules={[{ message: "Enter image" }]}
           >
-            <Input />
+            <Input placeholder="shoes, shirt, kitchen" />
           </Form.Item>
           <Form.Item
             name="description"
-            label="description"
             id="description"
             value={description}
             rules={[{ message: "Enter description" }]}
             onChange={(e) => setDescription(e.target.value)}
           >
-            <Input />
+            <Input.TextArea placeholder="Description" />
           </Form.Item>
           <Form.Item>
             <Upload {...prop}>
-              <Button icon={<UploadOutlined />}>Upload Item</Button>
+              <Button icon={<UploadOutlined />}>Select image</Button>
             </Upload>
           </Form.Item>
           <Form.Item>
-            <Button htmlType="submit" type="primary" onClick={productAdd}>
+            <Button block htmlType="submit" type="primary" onClick={productAdd}>
               Add
             </Button>
           </Form.Item>
 
-          <Row>
-            <Col span={12}>
-              <Link to="/login" variant="body2" style={{ color: "#3b3c36" }}>
-                Already have an account? Sign in
-              </Link>
-            </Col>
-          </Row>
+
         </Form>
 
        </Card>

@@ -67,7 +67,6 @@ function App() {
             <Route path="/produc/manage" exact component={ManageProducts} />
           </Switch>
         </Router>
-        <Footer />
       </Suspense>
     </>
   );

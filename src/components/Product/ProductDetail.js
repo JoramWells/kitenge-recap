@@ -213,8 +213,6 @@ export default function ProductDetail(props) {
                     <Form
                       onSubmit={handleSubmit}
                       layout="vertical"
-                      labelCol={{ span: 4 }}
-                      wrapperCol={{ span: 32 }}
                       size="large"
                     >
                       <Form.Item required>

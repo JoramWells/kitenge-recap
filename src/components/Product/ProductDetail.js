@@ -24,6 +24,7 @@ import {
   Modal,
   Input,
   Radio,
+  message
 } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import Carousel from "react-multi-carousel";
@@ -40,6 +41,7 @@ import {
 } from "@ant-design/icons";
 
 const { Meta } = Card;
+const Cookie = require("js-cookie");
 
 const responsive = {
   superLargeDesktop: {
@@ -171,30 +173,34 @@ export default function ProductDetail(props) {
                     .min(6, "Password must be atleast 6 characters")
                     .required("Password is required"),
                 })}
-                onSubmit={(values, { setSubmitting }) => {
-                  setTimeout(() => {
+                onSubmit={ (values, { setSubmitting }) => {
+                   setTimeout(async() => {
                     let dataToSubmit = {
                       email: values.email,
                       password: values.password,
                     };
-                    dispatch(signin(dataToSubmit));
+                     await dispatch(signin(dataToSubmit));
+                    const userFailure = Cookie.getJSON('userFailure')
 
-                    // .then((response) => {
-                    //   console.log(response);
-                    //   if (response.success) props.history.push("/");
-                    //   else setFormErrorMessage("Email or password wrong");
-                    // })
-                    // .catch((err) => {
-                    //   setFormErrorMessage("Email or password wrong");
-                    //   setTimeout(() => {
-                    //     setFormErrorMessage("");
-                    //   }, 3000);
-                    // });
+                    if(!userFailure){
+                      console.log()
+                }else
+                {setFormErrorMessage(userFailure.message);}
+
+                const userSuccess = Cookie.getJSON('userInfo')
+                if(!userSuccess)
+                console.log()
+                else{
+                  message.success('Successfully login')
+                  history.goBack()
+
+}
+
+
+
                     setSubmitting(false);
                   }, 500);
                   setTimeout(
-                    console.log("value " + userInfo.id),
-
                     5000
                   );
                 }}

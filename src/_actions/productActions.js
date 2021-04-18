@@ -91,7 +91,7 @@ const saveProduct = (name, shop, price, image, description, category) => async (
     const {
       userSignin: { userInfo },
     } = getState();
-    const { data } = await axios.post(
+    await axios.post(
       `/productz/add`,
       { name, shop, price, image, description },
       {
@@ -99,8 +99,11 @@ const saveProduct = (name, shop, price, image, description, category) => async (
           Authorization: "Bearer" + userInfo.token,
         },
       }
-    );
-    dispatch({ type: PRODUCT_SAVE_SUCCESS, payload: data });
+    ).then(response=>{
+    dispatch({ type: PRODUCT_SAVE_SUCCESS, payload: response.data });
+
+
+    }).catch(err=>console.log(err))
   } catch (error) {
     dispatch({ type: PRODUCT_SAVE_FAIL });
   }

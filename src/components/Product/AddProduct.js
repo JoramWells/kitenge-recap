@@ -1,17 +1,14 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { saveProduct } from "../../_actions/productActions";
 import { CaretRightOutlined, UploadOutlined } from "@ant-design/icons";
 
 import {
   Row,
-  Col,
   Typography,
   Form,
   Input,
   Button,
-  Select,
   message,
   Upload,
   Card
@@ -19,8 +16,7 @@ import {
 
 
 
-const { Title, Text } = Typography;
-const { Option } = Select;
+const { Title } = Typography;
 
 export default function AddProduct(props) {
   const [name, setName] = useState("");
@@ -79,9 +75,9 @@ export default function AddProduct(props) {
   //       };
   //   }, [userInfo]);
 
-  const productAdd = (e) => {
+  const productAdd = async (e) => {
     e.preventDefault();
-    dispatch(saveProduct(name, shop, price, image, category, description));
+    await dispatch(saveProduct(name, shop, price, image, category, description));
     message.success("Product added succefully");
     setTimeout(() => {
       props.history.push("/produc/manage");

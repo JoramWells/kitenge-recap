@@ -8,17 +8,22 @@ import {
   Form,
   Skeleton,
   notification,
-  Divider,
+  Popconfirm,
+  message
 } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
 import { listProducts } from "../../_actions/productActions";
-import { EllipsisOutlined } from "@ant-design/icons";
+import {  EllipsisOutlined,   ShoppingOutlined } from "@ant-design/icons";
 
 const { Meta } = Card;
 const { Text } = Typography;
 const posts = [1, 2, 3, 4, 5];
+
+function confirm() {
+  message.info('Clicked on Yes.');
+}
 
 const openNotification = (message, description) => {
   notification.open({
@@ -77,17 +82,21 @@ export default function CarouselItem() {
                   <LazyLoadImage
                     src={item.image}
                     effect="blur"
-                    alt="productImage"
-                    style={{ width: "inherit" }}
+                    alt="product-Image"
+                    style={{ width: "inherit"}}
                   />
                 }
-                extra={
-                  <EllipsisOutlined
-                    onClick={() =>
-                      openNotification(item.product_name, item.description)
-                    }
-                  />
-                }
+
+                actions={[
+                  <Popconfirm placement="top" title={'Add product to cart'}  okText="Yes" cancelText="No" onConfirm={confirm}>
+                  <ShoppingOutlined key="cart" />,
+                </Popconfirm>,
+                  <EllipsisOutlined key="ellipsis" 
+                  onClick={() =>
+                    openNotification(item.product_name, item.description)
+                  }
+                   />,
+                ]}
               >
                 <Link
                   to={`/product-detail/${item.id}/?category=${item.category}`}

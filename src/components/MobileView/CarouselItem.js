@@ -16,14 +16,16 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
 import { listProducts } from "../../_actions/productActions";
 import {  EllipsisOutlined,   ShoppingOutlined } from "@ant-design/icons";
-
+import { addToCart } from "../../_actions/cartActions";
 const { Meta } = Card;
 const { Text } = Typography;
 const posts = [1, 2, 3, 4, 5];
 
-function confirm() {
-  message.info('Clicked on Yes.');
-}
+
+
+
+
+
 
 const openNotification = (message, description) => {
   notification.open({
@@ -55,13 +57,31 @@ const renderSkeleton = posts.map((post, index) => {
     </Col>
   );
 });
+
+
+
 export default function CarouselItem() {
   const dispatch = useDispatch();
   const ProductList = useSelector((state) => state.productList);
   const { posts, loading, error } = ProductList;
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo } = userSignin;
+
+  const productAddToCart = (productId) =>{
+    dispatch(addToCart(productId, 1, userInfo.name, userInfo.phone));
+  
+  }
+  const confirm = (id) => {
+    message.info('Clicked on Yes.');
+    productAddToCart(id)
+
+  }
+
+
 
   useEffect(() => {
     dispatch(listProducts());
+
     return () => {};
   }, []);
   return (
@@ -88,8 +108,8 @@ export default function CarouselItem() {
                 }
 
                 actions={[
-                  <Popconfirm placement="top" title={'Add product to cart'}  okText="Yes" cancelText="No" onConfirm={confirm}>
-                  <ShoppingOutlined key="cart" />,
+                  <Popconfirm placement="top" title={'Add product to cart'}  okText="Yes" cancelText="No" onConfirm={()=>confirm(item.id)}>
+                  <ShoppingOutlined key="cart"  />,
                 </Popconfirm>,
                   <EllipsisOutlined key="ellipsis" 
                   onClick={() =>

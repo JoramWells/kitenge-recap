@@ -89,7 +89,7 @@ export default function AddProduct(props) {
   };
 
   return (
-    <Row justify="space-around" align="middle" style={{ marginTop: "40px" }}>
+    <Row justify="space-around" align="middle" style={{ marginTop: "10px", marginBottom:"20px" }}>
        <Card style={{width:"25rem"}}>
          <Title level={3}>
            Add product
@@ -104,7 +104,7 @@ export default function AddProduct(props) {
             rules={[{ message: "Enter item name", value: { name } }]}
             onChange={(e) => setName(e.target.value)}
           >
-            <Input prefix={<CaretRightOutlined />} placeholder="Item name" />
+            <Input prefix={<CaretRightOutlined style={{color:"#fdba45"}} />} placeholder="Item name" />
           </Form.Item>
           <Form.Item
             name="Price"
@@ -113,7 +113,7 @@ export default function AddProduct(props) {
             rules={[{ message: "Enter Item price" }]}
             onChange={(e) => setPrice(e.target.value)}
           >
-            <Input prefix={<CaretRightOutlined />} placeholder="Enter price e.g 2030" />
+            <Input prefix={<CaretRightOutlined style={{color:"#fdba45"}} />} placeholder="Enter price e.g 2030" />
           </Form.Item>
           <Form.Item
             id="shop"
@@ -122,7 +122,7 @@ export default function AddProduct(props) {
             rules={[{ message: "Enter shop" }]}
             onChange={(e) => setShop(e.target.value)}
           >
-            <Input prefix={<CaretRightOutlined />} placeholder="Shop name" />
+            <Input prefix={<CaretRightOutlined style={{color:"#fdba45"}} />} placeholder="Shop name" />
           </Form.Item>
 
           <Form.Item
@@ -130,9 +130,8 @@ export default function AddProduct(props) {
             id="category"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
-            rules={[{ message: "Enter image" }]}
           >
-            <Input prefix={<CaretRightOutlined style={{color:"#707070"}} />} placeholder="shoes, shirt, kitchen" />
+            <Input prefix={<CaretRightOutlined style={{color:"#fdba45"}} />} placeholder="shoes, shirt, kitchen" />
           </Form.Item>
           <Form.Item
             name="description"

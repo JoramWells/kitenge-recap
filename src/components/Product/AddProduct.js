@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { saveProduct } from "../../_actions/productActions";
-import { UploadOutlined } from "@ant-design/icons";
+import { CaretRightOutlined, UploadOutlined } from "@ant-design/icons";
 
 import {
   Row,
@@ -104,7 +104,7 @@ export default function AddProduct(props) {
             rules={[{ message: "Enter item name", value: { name } }]}
             onChange={(e) => setName(e.target.value)}
           >
-            <Input placeholder="Item name" />
+            <Input prefix={<CaretRightOutlined />} placeholder="Item name" />
           </Form.Item>
           <Form.Item
             name="Price"
@@ -113,7 +113,7 @@ export default function AddProduct(props) {
             rules={[{ message: "Enter Item price" }]}
             onChange={(e) => setPrice(e.target.value)}
           >
-            <Input placeholder="Enter price e.g 2030" />
+            <Input prefix={<CaretRightOutlined />} placeholder="Enter price e.g 2030" />
           </Form.Item>
           <Form.Item
             id="shop"
@@ -122,7 +122,7 @@ export default function AddProduct(props) {
             rules={[{ message: "Enter shop" }]}
             onChange={(e) => setShop(e.target.value)}
           >
-            <Input placeholder="Shop name" />
+            <Input prefix={<CaretRightOutlined />} placeholder="Shop name" />
           </Form.Item>
 
           <Form.Item
@@ -132,7 +132,7 @@ export default function AddProduct(props) {
             onChange={(e) => setCategory(e.target.value)}
             rules={[{ message: "Enter image" }]}
           >
-            <Input placeholder="shoes, shirt, kitchen" />
+            <Input prefix={<CaretRightOutlined style={{backgroundColor:"whitesmoke"}} />} placeholder="shoes, shirt, kitchen" />
           </Form.Item>
           <Form.Item
             name="description"
@@ -145,7 +145,7 @@ export default function AddProduct(props) {
           </Form.Item>
           <Form.Item>
             <Upload {...prop}>
-              <Button icon={<UploadOutlined />}>Select image</Button>
+              <Button icon={<UploadOutlined style={{backgroundColor:"whitesmoke"}} />}>Select image</Button>
             </Upload>
           </Form.Item>
           <Form.Item>

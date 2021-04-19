@@ -293,7 +293,7 @@ export default function ProductDetail(props) {
                           htmlType="submit"
                           type="primary"
                           onClick={handleSubmit}
-                          disabled={isSubmitting}
+                          loading={isSubmitting}
                           // disabled={!phone}
                           block
                           style={{ border: "none" }}

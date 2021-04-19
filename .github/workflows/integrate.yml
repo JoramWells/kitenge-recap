@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-name: Kitenge CI/CD
-=======
 name: Client CI/CD
->>>>>>> main
 on:
   pull_request:
     branches: [ main ]

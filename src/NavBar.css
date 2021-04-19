@@ -116,10 +116,10 @@
     display: none !important;
   }
   .mobile__carousel {
-    display: inline-block !important;
+    display: block !important;
   }
   .mobile__navbar {
-    display: inline-block !important;
+    display: block !important;
   }
 }
 

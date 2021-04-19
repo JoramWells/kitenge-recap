@@ -2,13 +2,13 @@ import React,{useState} from "react";
 import {
   UserOutlined,
   HomeOutlined,
-  SearchOutlined,
   MailOutlined,
   ShoppingCartOutlined,
 } from "@ant-design/icons";
 import { Menu, Badge,   Col,Image,Typography,Row,Modal } from "antd";
 import { useSelector } from "react-redux";
 import Cookie from "js-cookie";
+
 
 const { SubMenu } = Menu;
 const cartItems = Cookie.getJSON("cartItems");
@@ -30,69 +30,60 @@ export default function NavMobile() {
   };
   if(!userInfo){
     return(
-      <nav>
+      <nav className="menu">
+        <div className="menu__logo">
+        <a href="/">
+          <HomeOutlined style={{ fontSize: "1.5rem" }} />
+          </a>
+
+        </div>
+
       <Menu
         mode="horizontal"
-        style={{  border: "0" }}
-      >
-        <Menu.Item title="Home">
-          <a href="/">
-          <HomeOutlined style={{ fontSize: "1.5rem" }} />
-
-          </a>
+        style={{float:"right"}}
+      > 
+        <Menu.Item
+        >
+          <a href="/login">Login</a>
         </Menu.Item>
         <Menu.Item
-          icon={
-            <Badge dot count={1} style={{ backgroundColor: "green" }}>
-              Inbox
-            </Badge>
-          }
-        ></Menu.Item>
-        <Menu.Item>
-          <Badge dot count={2}>
-            Cart
-          </Badge>
+        >
+          <a href="/register">Register</a>
         </Menu.Item>
-        
-        <Menu.Item
-          icon={<SearchOutlined style={{ fontSize: "1.5rem" }} />}
-        >Search</Menu.Item>
-                <Menu.Item
-          icon={<SearchOutlined style={{ fontSize: "1.5rem" }} />}
-        >Signup</Menu.Item>
 
       </Menu>
-    </nav>
+      </nav>
+
     )
   }else{
     if(!cartItems){
       return (
-        <nav>
+        <nav className="menu">
+        <div className="menu__logo">
+        <a href="/">
+          <HomeOutlined style={{ fontSize: "1.5rem" }} />
+          </a>
+
+        </div>
           <Menu
             mode="horizontal"
-            style={{ justifyContent: "space-between", border: "0" }}
+            style={{ justifyContent: "space-between", float:"right" }}
           >
-            <Menu.Item title="Home">
-              <HomeOutlined style={{ fontSize: "1.5rem" }} />
-            </Menu.Item>
+
             <Menu.Item
               icon={
                 <Badge  count={0} style={{ backgroundColor: "green" }}>
-                  <MailOutlined />
+                  <MailOutlined style={{fontSize:"1.5rem"}} />
                 </Badge>
               }
             ></Menu.Item>
             <Menu.Item>
               <Badge dot count={2}>
-                Cart
+                <ShoppingCartOutlined style={{fontSize:"1.5rem"}}/>
               </Badge>
             </Menu.Item>
-            <Menu.Item>
-              <Badge count={2}>Payments</Badge>
-            </Menu.Item>
-            <Menu.Item
-              icon={<SearchOutlined style={{ fontSize: "1.5rem" }} />}
-            >Search</Menu.Item>
+
+
             <SubMenu title={<UserOutlined style={{ fontSize: "1.5rem" }} />}>
             <Menu.Item style={{ paddingLeft: "85px", margin: "auto" }}>
                   <img
@@ -109,32 +100,32 @@ export default function NavMobile() {
     }else{
       return (
         <>
-                <nav>
-          <Menu
+                <nav className="menu">
+                  <div  className="menu__logo">
+                    <a>
+            <HomeOutlined style={{ fontSize: "1.5rem", paddingTop: "1rem" }} />
+
+                    </a>
+                  </div>
+                  <Menu
             mode="horizontal"
-            style={{ justifyContent: "space-between", border: "0" }}
+            style={{ justifyContent: "space-between",border:"0", float:"right" }}
           >
-            <Menu.Item title="Home">
-              <HomeOutlined style={{ fontSize: "1.5rem" }} />
-            </Menu.Item>
+
             <Menu.Item
               icon={
-                <Badge dot  count={1} style={{ backgroundColor: "green" }}>
-                  <MailOutlined style={{ fontSize: "1.3rem" }} />
+                <Badge  count={cartItems.length} style={{ backgroundColor: "green" }}>
+                  <MailOutlined style={{fontSize:"1.5rem"}} />
                 </Badge>
               }
             ></Menu.Item>
             <Menu.Item>
               <Badge dot count={2}>
-                <ShoppingCartOutlined onClick={showModal} style={{ fontSize: "1.5rem" }}/>
+                <ShoppingCartOutlined style={{fontSize:"1.5rem"}}/>
               </Badge>
             </Menu.Item>
-            {/* <Menu.Item>
-              <Badge count={2}>Payments</Badge>
-            </Menu.Item> */}
-            {/* <Menu.Item
-              icon={<SearchOutlined style={{ fontSize: "1.5rem" }} />}
-            >Search</Menu.Item> */}
+
+
             <SubMenu title={<UserOutlined style={{ fontSize: "1.5rem" }} />}>
             <Menu.Item style={{ paddingLeft: "85px", margin: "auto" }}>
                   <img
@@ -146,6 +137,7 @@ export default function NavMobile() {
               <Menu.Item>{userInfo.email}</Menu.Item>
             </SubMenu>
           </Menu>
+{/* navbar */}
         </nav>
         <Modal
         visible={visible}

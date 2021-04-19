@@ -13,6 +13,7 @@ import {
   Col,
   Spin,
 } from "antd";
+import { LockOutlined, MailOutlined } from "@ant-design/icons";
 
 const { Title } = Typography;
 
@@ -43,13 +44,13 @@ export default function SignIn(props) {
   }, [userInfo]);
 
   return (
-    <Row justify="space-around" align="middle">
-      <Col span={12}>
-        <Card style={{ margin: "2rem" }}>
+    <Row justify="space-around" align="middle" style={{marginTop:"0.5rem"}}>
+      
+        <Card style={{ width: "25rem" }}>
           <Title level={3} style={{ textAlign: "center" }}>
             Sign in
           </Title>
-          <Form size="large" layout="vertical" name="basic" noValidate>
+          <Form size="large" layout="vertical" noValidate>
             {loading && (
               <Row justify="space-around" align="middle">
                 <Spin />
@@ -57,28 +58,23 @@ export default function SignIn(props) {
             )}
             {error && <div>{error}</div>}
             <Form.Item
+              label="Enter email address"
               required
               id="email"
-              label="Email Address"
               name="email"
-              rules={[{ required: true, message: "Enter email" }]}
               onChange={(e) => setEmail(e.target.value)}
             >
-              <Input />
+              <Input prefix={<MailOutlined/>} placeholder="blackwell@gmail.com" />
             </Form.Item>
             <Form.Item
               name="password"
-              label="Password"
               type="password"
               id="password"
-              rules={[{ required: true, message: "Enter password" }]}
               onChange={(e) => setPassword(e.target.value)}
             >
-              <Input.Password />
+              <Input.Password prefix={<LockOutlined/>} placeholder="Enter password" />
             </Form.Item>
-            <Form.Item {...tailLayout} name="remember" valuePropName="checked">
-              <Checkbox>Remember me</Checkbox>
-            </Form.Item>
+
 
             <Form.Item>
               <Button
@@ -108,7 +104,6 @@ export default function SignIn(props) {
             </Row>
           </Form>
         </Card>
-      </Col>
     </Row>
   );
 }

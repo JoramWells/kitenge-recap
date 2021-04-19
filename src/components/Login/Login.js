@@ -1,23 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import {Formik} from 'formik'
+import * as Yup from "yup"
 import { useDispatch, useSelector } from "react-redux";
 import { signin } from "../../_actions/userActions";
 import {
   Form,
-  Checkbox,
   Input,
   Button,
   Card,
   Typography,
   Row,
   Col,
-  Spin,
+  message,
 } from "antd";
 import { LockOutlined, MailOutlined } from "@ant-design/icons";
 
 const { Title } = Typography;
+const Cookie = require("js-cookie");
 
 export default function SignIn(props) {
+  const history = useHistory()
+  const [formErrorMessage, setFormErrorMessage] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const userSignin = useSelector((state) => state.userSignin);
@@ -50,61 +54,147 @@ export default function SignIn(props) {
           <Title level={3} style={{ textAlign: "center" }}>
             Sign in
           </Title>
-          <Form size="large" layout="vertical" noValidate>
-            {loading && (
-              <Row justify="space-around" align="middle">
-                <Spin />
-              </Row>
-            )}
-            {error && <div>{error}</div>}
-            <Form.Item
-              label="Enter email address"
-              required
-              id="email"
-              name="email"
-              onChange={(e) => setEmail(e.target.value)}
-            >
-              <Input prefix={<MailOutlined/>} placeholder="blackwell@gmail.com" />
-            </Form.Item>
-            <Form.Item
-              name="password"
-              type="password"
-              id="password"
-              onChange={(e) => setPassword(e.target.value)}
-            >
-              <Input.Password prefix={<LockOutlined/>} placeholder="Enter password" />
-            </Form.Item>
+          <Formik
+                initialValues={{
+                  email: "",
+                  password: "",
+                }}
+                validationSchema={Yup.object().shape({
+                  email: Yup.string()
+                    .email("Email is invalid")
+                    .required("Email is required"),
+                  password: Yup.string()
+                    .min(6, "Password must be atleast 6 characters")
+                    .required("Password is required"),
+                })}
+                onSubmit={ (values, { setSubmitting }) => {
+                   setTimeout(async() => {
+                    let dataToSubmit = {
+                      email: values.email,
+                      password: values.password,
+                    };
+                     await dispatch(signin(dataToSubmit));
+                    const userFailure = Cookie.getJSON('userFailure')
 
+                    if(!userFailure){
+                      console.log()
+                }else
+                {setFormErrorMessage(userFailure.message);}
 
-            <Form.Item>
-              <Button
-                className="cart"
-                type="primary"
-                htmlType="submit"
-                // onClick={submitHandler}
-                block
-                style={{border:"none"}}
+                const userSuccess = Cookie.getJSON('userInfo')
+                if(!userSuccess)
+                console.log()
+                else{
+                  message.success('Successfully login')
+                  history.goBack()
+
+}
+
+                    setSubmitting(false);
+                  }, 500);
+
+                }}
               >
-                Login
-              </Button>
-            </Form.Item>
+                {(props) => {
+                  const {
+                    values,
+                    touched,
+                    errors,
+                    isSubmitting,
+                    handleChange,
+                    handleBlur,
+                    handleSubmit,
+                  } = props;
+                  return (
+                    <Form
+                      onSubmit={handleSubmit}
+                      layout="vertical"
+                      size="large"
+                    >
+                      <Form.Item required>
+                        <Input
+                          prefix={<MailOutlined />}
+                          id="email"
+                          placeholder="Enter email addrress"
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          value={values.email}
+                          className={
+                            errors.email && touched.email
+                              ? "text-input error"
+                              : "text-input"
+                          }
+                        />
+                        {errors.email && touched.email && (
+                          <div className="input-feedback">{errors.email}</div>
+                        )}
+                      </Form.Item>
 
-            <Row>
-              <Col>
-                <Link
-                  to={
-                    redirect === "/"
-                      ? "register"
-                      : "register?redirect=" + redirect
-                  }
-                  variant="body1"
-                  style={{ color: "#3b3c36" }}
-                >
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Col>
-            </Row>
-          </Form>
+                      <Form.Item required>
+                        <Input.Password
+                          id="password"
+                          prefix={<LockOutlined />}
+                          placeholder="Enter password"
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          value={values.password}
+                          className={
+                            errors.password && touched.password
+                              ? "text-input error"
+                              : "text-input"
+                          }
+                        />
+                        {errors.password && touched.password && (
+                          <div className="input-password">
+                            {errors.password}
+                          </div>
+                        )}
+                      </Form.Item>
+                      {formErrorMessage && (
+                        <label>
+                          <p
+                            style={{
+                              color: "#ff0000bf",
+                              fontSize: "0.7rem",
+                              border: "1px solid",
+                              padding: "1rem",
+                              borderRadius: "10px",
+                            }}
+                          >
+                            {formErrorMessage}{" "}
+                          </p>{" "}
+                        </label>
+                      )}
+
+                      <Form.Item>
+                        <Row>
+                          <Col>
+                            <Button type="link">
+                              {" "}
+                              {"Don't have an account? Sign Up"}
+                            </Button>
+                          </Col>
+                        </Row>
+                      </Form.Item>
+
+                      <Form.Item>
+                        <Button
+                          className="cart"
+                          htmlType="submit"
+                          type="primary"
+                          onClick={handleSubmit}
+                          loading={isSubmitting}
+                          // disabled={!phone}
+                          block
+                          style={{ border: "none" }}
+                        >
+                          <Title level={5}>LOGIN!</Title>
+                        </Button>
+                      </Form.Item>
+                    </Form>
+                  );
+                }}
+              </Formik>
         </Card>
     </Row>
   );

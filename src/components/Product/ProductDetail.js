@@ -196,13 +196,9 @@ export default function ProductDetail(props) {
 
 }
 
-
-
                     setSubmitting(false);
                   }, 500);
-                  setTimeout(
-                    5000
-                  );
+
                 }}
               >
                 {(props) => {

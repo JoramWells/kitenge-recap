@@ -121,7 +121,7 @@ export default function NavMobile() {
             ></Menu.Item>
             <Menu.Item>
               <Badge dot count={2}>
-                <ShoppingCartOutlined style={{fontSize:"1.5rem"}}/>
+                <ShoppingCartOutlined onClick={showModal} style={{fontSize:"1.5rem"}}/>
               </Badge>
             </Menu.Item>
 

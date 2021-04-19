@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import {withRouter} from 'react-router-dom'
 import {
   Row,
   Col,
@@ -9,7 +10,7 @@ import {
   Skeleton,
   notification,
   Popconfirm,
-  message
+  message,
 } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -17,14 +18,10 @@ import { Link } from "react-router-dom";
 import { listProducts } from "../../_actions/productActions";
 import {  EllipsisOutlined,   ShoppingOutlined } from "@ant-design/icons";
 import { addToCart } from "../../_actions/cartActions";
+
 const { Meta } = Card;
 const { Text } = Typography;
 const posts = [1, 2, 3, 4, 5];
-
-
-
-
-
 
 
 const openNotification = (message, description) => {
@@ -60,27 +57,29 @@ const renderSkeleton = posts.map((post, index) => {
 
 
 
-export default function CarouselItem(props) {
+function CarouselItem(props) {
   const dispatch = useDispatch();
   const ProductList = useSelector((state) => state.productList);
   const { posts, loading, error } = ProductList;
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
 
-  const productAddToCart = (productId) =>{
+  const productAddToCart = async(productId,product_name) =>{
     if(!userInfo){
       message.warn('Redirecting to login page...')
-      props.history.push('/login')
+      props.history.push("/login")
       
     }
-    else
-    dispatch(addToCart(productId, 1, userInfo.name, userInfo.phone));
-  
-  }
-  const confirm = (id) => {
-    message.info('Clicked on Yes.');
-    productAddToCart(id)
+    else{
+      setTimeout((
+      await dispatch(addToCart(productId, 1, userInfo.name, userInfo.phone))
 
+      ),2000)
+      message.success(`${product_name} added to cart`)
+
+
+    }
+  
   }
 
 
@@ -114,8 +113,8 @@ export default function CarouselItem(props) {
                 }
 
                 actions={[
-                  <Popconfirm placement="top" title={'Add product to cart'}  okText="Yes" cancelText="No" onConfirm={()=>confirm(item.id)}>
-                  <ShoppingOutlined key="cart"  />,
+                  <Popconfirm placement="top" title={'Add product to cart'}  okText="Yes" cancelText="No" onConfirm={()=>productAddToCart(item.id,item.product_name)}>
+                  <ShoppingOutlined key="cart" style={{fontSize:"1.3rem"}}  />
                 </Popconfirm>,
                   <EllipsisOutlined key="ellipsis" 
                   onClick={() =>
@@ -146,3 +145,5 @@ export default function CarouselItem(props) {
     </div>
   );
 }
+
+export default withRouter  (CarouselItem)

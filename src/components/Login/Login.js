@@ -78,10 +78,12 @@ export default function SignIn(props) {
 
             <Form.Item>
               <Button
+                className="cart"
                 type="primary"
                 htmlType="submit"
-                onClick={submitHandler}
+                // onClick={submitHandler}
                 block
+                style={{border:"none"}}
               >
                 Login
               </Button>

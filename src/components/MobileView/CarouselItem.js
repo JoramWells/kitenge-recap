@@ -60,7 +60,7 @@ const renderSkeleton = posts.map((post, index) => {
 
 
 
-export default function CarouselItem() {
+export default function CarouselItem(props) {
   const dispatch = useDispatch();
   const ProductList = useSelector((state) => state.productList);
   const { posts, loading, error } = ProductList;
@@ -68,6 +68,12 @@ export default function CarouselItem() {
   const { userInfo } = userSignin;
 
   const productAddToCart = (productId) =>{
+    if(!userInfo){
+      message.warn('Redirecting to login page...')
+      props.history.push('/login')
+      
+    }
+    else
     dispatch(addToCart(productId, 1, userInfo.name, userInfo.phone));
   
   }

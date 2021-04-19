@@ -1,7 +1,11 @@
+<<<<<<< HEAD
 name: Kitenge CI/CD
+=======
+name: Client CI/CD
+>>>>>>> main
 on:
   pull_request:
-    branches: [main]
+    branches: [ main ]
 
 jobs:
   test_pull_request:
@@ -12,6 +16,5 @@ jobs:
         with:
           node-version: 14
       - run: yarn add
-      - run: yarn run test
       - run: yarn run build
 

@@ -8,17 +8,24 @@ import {
   Form,
   Skeleton,
   notification,
-  Divider,
+  Popconfirm,
+  message
 } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
 import { listProducts } from "../../_actions/productActions";
-import { EllipsisOutlined } from "@ant-design/icons";
-
+import {  EllipsisOutlined,   ShoppingOutlined } from "@ant-design/icons";
+import { addToCart } from "../../_actions/cartActions";
 const { Meta } = Card;
 const { Text } = Typography;
 const posts = [1, 2, 3, 4, 5];
+
+
+
+
+
+
 
 const openNotification = (message, description) => {
   notification.open({
@@ -50,13 +57,37 @@ const renderSkeleton = posts.map((post, index) => {
     </Col>
   );
 });
-export default function CarouselItem() {
+
+
+
+export default function CarouselItem(props) {
   const dispatch = useDispatch();
   const ProductList = useSelector((state) => state.productList);
   const { posts, loading, error } = ProductList;
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo } = userSignin;
+
+  const productAddToCart = (productId) =>{
+    if(!userInfo){
+      message.warn('Redirecting to login page...')
+      props.history.push('/login')
+      
+    }
+    else
+    dispatch(addToCart(productId, 1, userInfo.name, userInfo.phone));
+  
+  }
+  const confirm = (id) => {
+    message.info('Clicked on Yes.');
+    productAddToCart(id)
+
+  }
+
+
 
   useEffect(() => {
     dispatch(listProducts());
+
     return () => {};
   }, []);
   return (
@@ -77,17 +108,21 @@ export default function CarouselItem() {
                   <LazyLoadImage
                     src={item.image}
                     effect="blur"
-                    alt="productImage"
-                    style={{ width: "inherit" }}
+                    alt="product-Image"
+                    style={{ width: "inherit"}}
                   />
                 }
-                extra={
-                  <EllipsisOutlined
-                    onClick={() =>
-                      openNotification(item.product_name, item.description)
-                    }
-                  />
-                }
+
+                actions={[
+                  <Popconfirm placement="top" title={'Add product to cart'}  okText="Yes" cancelText="No" onConfirm={()=>confirm(item.id)}>
+                  <ShoppingOutlined key="cart"  />,
+                </Popconfirm>,
+                  <EllipsisOutlined key="ellipsis" 
+                  onClick={() =>
+                    openNotification(item.product_name, item.description)
+                  }
+                   />,
+                ]}
               >
                 <Link
                   to={`/product-detail/${item.id}/?category=${item.category}`}

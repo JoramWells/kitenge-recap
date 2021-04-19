@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Menu, Space, Badge, Modal, Col, Row, Typography, Image } from "antd";
+import { Menu, Space, Badge, Modal, Col, Row, Typography, Image,message } from "antd";
 import Cookie from "js-cookie";
 
 import {
@@ -14,7 +14,8 @@ const { Text, Title } = Typography;
 const { SubMenu } = Menu;
 const cartItems = Cookie.getJSON("cartItems");
 
-function RightMenu() {
+
+function RightMenu(props) {
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
   const [visible, setVisible] = useState(false);
@@ -24,6 +25,16 @@ function RightMenu() {
   const showModal = () => {
     setVisible(true);
   };
+  const logout = async() =>{
+    if(!userInfo){
+      console.log()
+    }
+    await Cookie.remove('userInfo')
+    setTimeout((
+      message.success('Logged out successfully')
+    ),2000)
+    props.history.push('/')
+  }
 
   const handleOk = () => {
     setVisible(false);
@@ -65,6 +76,7 @@ function RightMenu() {
                 />
               </Menu.Item>
               <Menu.Item>{userInfo.email}</Menu.Item>
+              <Menu.Item onClick={()=>logout()}>Logout</Menu.Item>
             </SubMenu>
           </Menu>
           <Modal
@@ -121,12 +133,11 @@ function RightMenu() {
             </SubMenu>
           </Menu>
           <Modal
-            title="Basic Modal"
             visible={visible}
             onOk={handleOk}
             onCancel={handleCancel}
           >
-            {cartItems.map((product) => {
+            {cartItems.map((product) => (
               <Row justify="space-around" align="middle">
                 <Col>
                   <Image
@@ -141,8 +152,8 @@ function RightMenu() {
                 <Col key={product.product}>
                   <Text>{product.price}</Text>
                 </Col>
-              </Row>;
-            })}
+              </Row>
+            ))}
           </Modal>
         </Space>
       );

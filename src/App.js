@@ -1,4 +1,5 @@
 import React, { Suspense, lazy } from "react";
+import loadable from '@loadable/component'
 import "./App.css";
 import { Spin, Row, Col } from "antd";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -12,6 +13,8 @@ import Payments from "./components/Payments/Payments";
 const ManageProducts = lazy(() =>
   import("./components/Product/ManageProducts")
 );
+
+
 const ShippingScreen = lazy(() =>
   import("./components/Shipping/ShippingScreen")
 );
@@ -29,7 +32,7 @@ function App() {
   const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
   return (
-    <div>
+    <>
       <Top />
       <NavigationResponsive />
 
@@ -64,9 +67,8 @@ function App() {
             <Route path="/produc/manage" exact component={ManageProducts} />
           </Switch>
         </Router>
-        <Footer />
       </Suspense>
-    </div>
+    </>
   );
 }
 

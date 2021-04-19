@@ -5,13 +5,15 @@ import { register } from "../../_actions/userActions";
 import { GoogleLogin } from "react-google-login";
 import PhoneInput from "react-phone-input-2";
 import { useHistory } from "react-router-dom";
-import { Row, Col, Form, Input, Button, Avatar, Card } from "antd";
+import { Row, Col, Form, Input, Button, Avatar, Card, message } from "antd";
 import {
   LockOutlined,
   MailOutlined,
   StopOutlined,
   UserOutlined,
 } from "@ant-design/icons";
+const Cookie = require("js-cookie");
+
 
 export default function SignUp(props) {
   const CLIENT_ID = "266388441735-5a4sfpj0lpk8nvjkf52ppoqqul0139st.apps.googleusercontent.com"
@@ -28,25 +30,33 @@ export default function SignUp(props) {
   const redirect = props.location.search
     ? props.location.search.split("=")[1]
     : "/";
-  useEffect(() => {
-    if (userInfo)
-      return () => {
-        history.goBack();
-      };
-  }, [userInfo]);
+  // useEffect(() => {
+  //   if (userInfo)
+  //     return () => {
+  //       history.goBack();
+  //     };
+  // }, [userInfo]);
 
   const submitHandler = async (e) => {
     e.preventDefault();
     await dispatch(
-      register(name, email, password, avatar, phone, address).then((response) =>
-        console.log(response)
-      )
-    );
-    setTimeout(
-      history.goBack(),
+      register(name, email, password, avatar, phone, address));
+      const userFailure = Cookie.getJSON('userFailure')
+      if(!userFailure){
+      console.log()
+}
+else
+message.warn(userFailure.message)
 
-      5000
-    );
+const userSuccess = Cookie.getJSON('userInfo')
+if(!userSuccess)
+console.log()
+else{
+  message.success('Successfully login')
+  history.goBack()
+
+}
+
   };
 
   const responseSuccess = (response) => {

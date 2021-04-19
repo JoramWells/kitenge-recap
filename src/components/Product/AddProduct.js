@@ -1,37 +1,22 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import Box from "@material-ui/core/Box";
 import { useDispatch, useSelector } from "react-redux";
 import { saveProduct } from "../../_actions/productActions";
-import { UploadOutlined } from "@ant-design/icons";
+import { CaretRightOutlined, UploadOutlined } from "@ant-design/icons";
 
 import {
   Row,
-  Col,
   Typography,
   Form,
   Input,
   Button,
-  Select,
   message,
   Upload,
+  Card
 } from "antd";
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
-        xpresscloud.com
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
 
-const { Title, Text } = Typography;
-const { Option } = Select;
+
+const { Title } = Typography;
 
 export default function AddProduct(props) {
   const [name, setName] = useState("");
@@ -90,9 +75,9 @@ export default function AddProduct(props) {
   //       };
   //   }, [userInfo]);
 
-  const productAdd = (e) => {
+  const productAdd = async (e) => {
     e.preventDefault();
-    dispatch(saveProduct(name, shop, price, image, category, description));
+    await dispatch(saveProduct(name, shop, price, image, category, description));
     message.success("Product added succefully");
     setTimeout(() => {
       props.history.push("/produc/manage");
@@ -100,87 +85,74 @@ export default function AddProduct(props) {
   };
 
   return (
-    <Row justify="space-around" align="middle" style={{ marginTop: "40px" }}>
-      <Col span={10}>
-        <Title level={3} style={{ textAlign: "center" }}>
-          Add product
-        </Title>
-        <Form layout="vertical" name="basic" encType="multipart/form-data">
+    <Row justify="space-around" align="middle" style={{ marginTop: "10px", marginBottom:"20px" }}>
+       <Card style={{width:"25rem"}}>
+         <Title level={3}>
+           Add product
+         </Title>
+ 
+        <Form layout="vertical" size="large" encType="multipart/form-data">
           <Form.Item
             required
             id="name"
-            label="Item name"
             name="name"
             value={name}
             rules={[{ message: "Enter item name", value: { name } }]}
             onChange={(e) => setName(e.target.value)}
           >
-            <Input />
+            <Input prefix={<CaretRightOutlined style={{color:"#fdba45"}} />} placeholder="Item name" />
           </Form.Item>
           <Form.Item
             name="Price"
-            label="price"
             name="price"
             value={price}
             rules={[{ message: "Enter Item price" }]}
             onChange={(e) => setPrice(e.target.value)}
           >
-            <Input />
+            <Input prefix={<CaretRightOutlined style={{color:"#fdba45"}} />} placeholder="Enter price e.g 2030" />
           </Form.Item>
           <Form.Item
             id="shop"
-            label="Online shop"
             name="shop"
             value={shop}
             rules={[{ message: "Enter shop" }]}
             onChange={(e) => setShop(e.target.value)}
           >
-            <Input />
+            <Input prefix={<CaretRightOutlined style={{color:"#fdba45"}} />} placeholder="Shop name" />
           </Form.Item>
 
           <Form.Item
             name="category"
-            label="category"
             id="category"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
-            rules={[{ message: "Enter image" }]}
           >
-            <Input />
+            <Input prefix={<CaretRightOutlined style={{color:"#fdba45"}} />} placeholder="shoes, shirt, kitchen" />
           </Form.Item>
           <Form.Item
             name="description"
-            label="description"
             id="description"
             value={description}
             rules={[{ message: "Enter description" }]}
             onChange={(e) => setDescription(e.target.value)}
           >
-            <Input />
+            <Input.TextArea placeholder="Description" />
           </Form.Item>
           <Form.Item>
             <Upload {...prop}>
-              <Button icon={<UploadOutlined />}>Upload Item</Button>
+              <Button icon={<UploadOutlined style={{backgroundColor:"whitesmoke"}} />}>Select image</Button>
             </Upload>
           </Form.Item>
           <Form.Item>
-            <Button htmlType="submit" type="primary" onClick={productAdd}>
+            <Button block htmlType="submit" type="primary" onClick={productAdd}>
               Add
             </Button>
           </Form.Item>
 
-          <Row>
-            <Col span={12}>
-              <Link to="/login" variant="body2" style={{ color: "#3b3c36" }}>
-                Already have an account? Sign in
-              </Link>
-            </Col>
-          </Row>
+
         </Form>
-        <Box mt={5}>
-          <Copyright />
-        </Box>
-      </Col>
+
+       </Card>
     </Row>
   );
 }

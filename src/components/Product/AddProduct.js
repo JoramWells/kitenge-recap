@@ -19,6 +19,7 @@ import {
 const { Title } = Typography;
 
 export default function AddProduct(props) {
+  
   const [name, setName] = useState("");
   const [shop, setShop] = useState("");
   const [price, setPrice] = useState("");
@@ -85,7 +86,7 @@ export default function AddProduct(props) {
   };
 
   return (
-    <Row justify="space-around" align="middle" style={{ marginTop: "10px", marginBottom:"20px" }}>
+    <Row justify="space-around" align="middle" style={{ marginTop: "4rem", marginBottom:"3rem" }}>
        <Card style={{width:"25rem"}}>
          <Title level={3}>
            Add product

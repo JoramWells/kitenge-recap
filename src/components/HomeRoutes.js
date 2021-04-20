@@ -10,7 +10,7 @@ export default function HomeRoutes() {
   return (
     <>
       <CarouselHeader />
-      <RecentItemsBar title="Available Now!!" />
+      {/* <RecentItemsBar title="Available Now!!"  /> */}
       <DesktopMobile />
     </>
   );

@@ -24,6 +24,7 @@ function NavigationBar() {
         top: "65px",
         display: "block",
       }}
+      className="desktop__navbar"
     >
       <nav className="menu">
         <div className="menu__logo">

@@ -18,6 +18,7 @@ import { Link } from "react-router-dom";
 import { listProducts } from "../../_actions/productActions";
 import {  EllipsisOutlined,   ShoppingOutlined } from "@ant-design/icons";
 import { addToCart } from "../../_actions/cartActions";
+import NavMobile from "./NavMobile";
 
 const { Meta } = Card;
 const { Text } = Typography;
@@ -82,14 +83,14 @@ function CarouselItem(props) {
   
   }
 
-
-
   useEffect(() => {
     dispatch(listProducts());
 
     return () => {};
   }, []);
   return (
+    <>
+    <NavMobile />
     <div className="mobile__carousel" style={{ backgroundColor: "#F8F8F8" }}>
       {loading ? (
         <Row justify="space-around" align="middle">
@@ -143,6 +144,7 @@ function CarouselItem(props) {
         </Row>
       )}
     </div>
+    </>
   );
 }
 

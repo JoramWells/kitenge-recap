@@ -7,8 +7,8 @@ import { LoadingOutlined } from "@ant-design/icons";
 // import Top from "./components/Top";
 import PaymentScreen from "./components/Shipping/PaymentScreen";
 import PlaceOrderScreen from "./components/Shipping/PlaceOrderScreen";
-import NavigationResponsive from "./components/NavigationResponsive";
 import Payments from "./components/Payments/Payments";
+import NavigationBar from "./components/NavigationBar";
 const ManageProducts = lazy(() =>
   import("./components/Product/ManageProducts")
 );
@@ -32,8 +32,7 @@ function App() {
 
   return (
     <>
-      <NavigationResponsive />
-
+    <NavigationBar/>
       <Suspense
         fallback={
           <Row justify="space-around" align="middle">

@@ -221,8 +221,8 @@ export default function ManageProducts(props) {
             <input hidden type="text" />
           </Form.Item>
           <Form.Item
-            name="Price"
-            label="price"
+            name="price"
+            label="Price"
             name="price"
             onChange={(e) => setPrice(e.target.value)}
           >
@@ -257,14 +257,13 @@ export default function ManageProducts(props) {
             id="shop"
             label="Online shop"
             name="shop"
-            value={shop}
-            rules={[{ message: "Enter shop" }]}
             onChange={(e) => setShop(e.target.value)}
           >
             <Input value={shop} />
             <input
               hidden
               type="text"
+              value={shop}
               onChange={(e) => setShop(e.target.value)}
             />
           </Form.Item>

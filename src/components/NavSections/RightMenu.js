@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Menu, Space, Badge, Modal, Col, Row, Typography, Image,message } from "antd";
 import Cookie from "js-cookie";
-import {withRouter} from 'react-router-dom'
+import {withRouter,Link} from "react-router-dom"
 import {
   MailOutlined,
   ShoppingCartOutlined,
@@ -9,7 +9,6 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import { useSelector } from "react-redux";
-import {Link} from 'react-router-dom'
 
 const { Text, Title } = Typography;
 const { SubMenu } = Menu;

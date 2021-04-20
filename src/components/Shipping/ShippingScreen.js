@@ -11,6 +11,7 @@ import {
 } from "antd";
 import { confirmPayment, makePayment } from "../../_actions/paymentActions";
 const { Title, Text } = Typography;
+const Cookie = require("js-cookie");
 
 export default function ShippingScreen() {
   const userSignin = useSelector((state) => state.userSignin);
@@ -28,9 +29,21 @@ export default function ShippingScreen() {
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
   const dispatch = useDispatch();
-  const paymentHandler = async ( amount) => {
-    await dispatch(makePayment(userInfo.address, amount));
+  const paymentHandler = async (address, amount) => {
+    await dispatch(makePayment(address, amount));
   };
+  const payDetail = Cookie.getJSON("paymentDetails");
+  if (payDetail) {
+    message.info(payDetail.ResponseDescription);
+    setTimeout(async () => {
+      await dispatch(confirmPay(payDetail.CheckoutRequestID));
+    }, 2000);
+  }
+  const confirmPaid = Cookie.getJSON("confirmPaid");
+  if(confirmPaid){
+    
+  }
+
 
   const confirmPay = async (checkoutrequestID) => {
     await dispatch(confirmPayment(checkoutrequestID));
@@ -51,10 +64,10 @@ export default function ShippingScreen() {
             </Descriptions.Item>
           </Descriptions>
 
-          {cartItems.map((index,product) => (
+          {cartItems.map((product) => (
             <Descriptions
               style={{ marginTop: "1rem" }}
-              key={index}
+              key={product.id}
               size="small"
               bordered
               title={product.product_name}
@@ -91,7 +104,7 @@ export default function ShippingScreen() {
             type="ghost"
             block
             size="large"
-            onClick={() => paymentHandler(userInfo.phone, qt)}
+            onClick={() => paymentHandler("+254799980846", 1)}
           >
             <Text>BUY NOW!!</Text>
           </Button>

@@ -10,6 +10,7 @@ import {
   MAKE_PAYMENT_REQUEST,
   MAKE_PAYMENT_SUCCESS,
 } from "../_constants/paymentsConstant";
+const Cookie = require("js-cookie");
 
 const makePayment = (phone, amount) => async (dispatch) => {
   dispatch({ type: MAKE_PAYMENT_REQUEST, payload: { phone, amount } });
@@ -17,6 +18,10 @@ const makePayment = (phone, amount) => async (dispatch) => {
     await axios.post("/mpes/stk", { phone, amount })
     .then(response=>{
       console.log(response)
+      Cookie.set('paymentDetails', JSON.stringify(response.data),{
+        expires:1/28800
+
+      })
     dispatch({ type: MAKE_PAYMENT_SUCCESS, payload: response });
 
     }).catch(err=>console.log(err))
@@ -28,8 +33,17 @@ const makePayment = (phone, amount) => async (dispatch) => {
 const confirmPayment = (requestID) => async (dispatch) => {
   dispatch({ type: CONFIRM_PAYMENT_REQUEST, payload: { requestID } });
   try {
-    const { data } = await axios.post("/query", { requestID });
-    dispatch({ type: CONFIRM_PAYMENT_SUCCESS, payload: data });
+    await axios.post("/query", { requestID })
+    .then(response=>{
+    // dispatch({ type: CONFIRM_PAYMENT_SUCCESS, payload: response.data });
+    Cookie.set('confirmPaid', JSON.stringify(response.data),{
+      expires:1/28800
+
+    })
+    }).catch(err=>{
+      dispatch({ type: CONFIRM_PAYMENT_FAIL, payload: err });
+
+    })
   } catch (error) {
     dispatch({ type: CONFIRM_PAYMENT_FAIL, payload: error.message });
   }

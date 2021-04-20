@@ -22,8 +22,6 @@ const Cookie = require("js-cookie");
 export default function SignIn(props) {
   const history = useHistory()
   const [formErrorMessage, setFormErrorMessage] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const userSignin = useSelector((state) => state.userSignin);
   const { loading, userInfo, error } = userSignin;
   const redirect = props.location.search
@@ -35,11 +33,7 @@ export default function SignIn(props) {
     wrapperCol: { offset: 8, span: 16 },
   };
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-    dispatch(signin(email, password));
-    props.history.push("/");
-  };
+
   useEffect(() => {
     if (userInfo) {
       props.history.push(redirect);

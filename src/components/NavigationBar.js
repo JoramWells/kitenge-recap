@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import RightMenu from "./NavSections/RightMenu";
 import { Drawer, Button } from "antd";
 import { HomeOutlined, MenuOutlined } from "@ant-design/icons";
+import {Link} from 'react-router-dom'
 
 function NavigationBar() {
   const [visible, setVisible] = useState(false);
@@ -28,9 +29,9 @@ function NavigationBar() {
     >
       <nav className="menu">
         <div className="menu__logo">
-          <a href="/">
+          <Link to="/">
             <HomeOutlined style={{ fontSize: "1.8rem", paddingTop: "1rem" }} />
-          </a>
+          </Link>
         </div>
         <div className="menu__container">
           {/* <div className="menu_left">
@@ -56,7 +57,6 @@ function NavigationBar() {
             onClose={onClose}
             visible={visible}
           >
-            {/* <LeftMenu mode="inline" /> */}
             <RightMenu mode="inline" />
           </Drawer>
         </div>

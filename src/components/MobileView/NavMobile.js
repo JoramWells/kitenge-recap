@@ -6,20 +6,14 @@ import {
 } from "@ant-design/icons";
 import { Menu, Badge, Col, Image, Typography, Row, Modal } from "antd";
 import { useSelector } from "react-redux";
-import Cookie from "js-cookie";
 import Avatar from "antd/lib/avatar/avatar";
-// import moment from "moment";
+import moment from "moment";
 
 
 const { SubMenu } = Menu;
-const cartItems = Cookie.getJSON("cartItems");
 const { Text, Title } = Typography;
-export default function NavMobile() {
-  const userSignin = useSelector((state) => state.userSignin);
-  const { userInfo } = userSignin;
+export default function NavMobile(props) {
   const [visible, setVisible] = useState(false);
-  const PaymentList = useSelector((state) => state.paymentList);
-  const { payments } = PaymentList;
   const handleOk = () => {
     setVisible(false);
   };
@@ -29,7 +23,7 @@ export default function NavMobile() {
   const showModal = () => {
     setVisible(true);
   };
-  if (!userInfo) {
+  if (!props.user) {
     return (
       <nav
         className="menu"
@@ -57,7 +51,7 @@ export default function NavMobile() {
       </nav>
     );
   } else {
-    if (!cartItems) {
+    if (!props.cart) {
       return (
         <nav
           className="menu"
@@ -97,13 +91,13 @@ export default function NavMobile() {
               
               title={
                 <Avatar
-                  src={userInfo.avatar ? userInfo.avatar: "http://gravatar.com/avatar/${moment().unix()}?d=identicon"}
+                  src={props.user.avatar ? props.user.avatar: `http://gravatar.com/avatar/${moment().unix()}?d=identicon`}
                   style={{ width: "1.5rem", height: "auto", margin: "0px" }}
                 />
               }
             >
 
-              <Menu.Item>{userInfo.email}</Menu.Item>
+              <Menu.Item>{props.user.email}</Menu.Item>
             </SubMenu>
           </Menu>
         </nav>
@@ -145,7 +139,7 @@ export default function NavMobile() {
                 }
               ></Menu.Item>
               <Menu.Item>
-                <Badge count={cartItems.length}>
+                <Badge count={props.cart.length}>
                   <ShoppingCartOutlined
                     onClick={showModal}
                     style={{ fontSize: "1.5rem" }}
@@ -157,18 +151,18 @@ export default function NavMobile() {
                 style={{ marginBottom: "0.4rem" }}
                 title={
                   <Avatar
-                    src={userInfo.avatar}
+                    src={props.user.avatar}
                     style={{ width: "1.5rem", height: "auto", margin: "0px" }}
                   />
                 }
               >
-                <Menu.Item>{userInfo.email}</Menu.Item>
+                <Menu.Item>{props.user.email}</Menu.Item>
               </SubMenu>
             </Menu>
             {/* navbar */}
           </nav>
           <Modal visible={visible} onOk={handleOk} onCancel={handleCancel}>
-            {cartItems.map((product) => (
+            {props.cart.map((product) => (
               <Row justify="space-around" align="middle">
                 <Col>
                   <Image

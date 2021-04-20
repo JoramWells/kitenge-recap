@@ -32,7 +32,6 @@ function App() {
 
   return (
     <>
-    <NavigationBar/>
       <Suspense
         fallback={
           <Row justify="space-around" align="middle">
@@ -43,6 +42,7 @@ function App() {
         }
       >
         <Router>
+          <NavigationBar/>
           <Switch>
             <Route path="/" exact component={HomeRoutes} />
             <Route path="/login" exact component={Login} />

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Menu, Space, Badge, Modal, Col, Row, Typography, Image,message } from "antd";
 import Cookie from "js-cookie";
-
+import {withRouter} from 'react-router-dom'
 import {
   MailOutlined,
   ShoppingCartOutlined,
@@ -9,6 +9,7 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import { useSelector } from "react-redux";
+import {Link} from 'react-router-dom'
 
 const { Text, Title } = Typography;
 const { SubMenu } = Menu;
@@ -47,10 +48,10 @@ function RightMenu(props) {
     return (
       <Menu mode="horizontal">
         <Menu.Item key="mail">
-          <a href="/login">Signin</a>
+          <Link to="/login">Signin</Link>
         </Menu.Item>
         <Menu.Item key="app">
-          <a href="/register">Signup</a>
+          <Link to="/register">Signup</Link>
         </Menu.Item>
       </Menu>
     );
@@ -161,4 +162,4 @@ function RightMenu(props) {
   }
 }
 
-export default RightMenu;
+export default withRouter (RightMenu);

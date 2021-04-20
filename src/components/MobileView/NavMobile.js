@@ -5,7 +5,6 @@ import {
   ShoppingCartOutlined,
 } from "@ant-design/icons";
 import { Menu, Badge, Col, Image, Typography, Row, Modal } from "antd";
-import { useSelector } from "react-redux";
 import Avatar from "antd/lib/avatar/avatar";
 import moment from "moment";
 

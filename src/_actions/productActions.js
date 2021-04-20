@@ -89,7 +89,7 @@ const saveProduct = (name, shop, price, image, description, category) => async (
       payload: { name, shop, price, image, description, category },
     });
     const {
-      userSignin: { userInfo },
+      userSignin: { userInfo},
     } = getState();
     await axios.post(
       `/productz/add`,

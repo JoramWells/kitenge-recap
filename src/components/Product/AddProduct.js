@@ -79,8 +79,8 @@ export default function AddProduct(props) {
   const productAdd = async (e) => {
     e.preventDefault();
     await dispatch(saveProduct(name, shop, price, image, category, description));
-    message.success("Product added succefully");
     setTimeout(() => {
+      message.success("Product added succefully");
       props.history.push("/produc/manage");
     }, 2000);
   };

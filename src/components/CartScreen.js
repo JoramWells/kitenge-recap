@@ -77,7 +77,7 @@ export default function CartScreen(props) {
     if (productId && userInfo) {
       dispatch(addToCart(productId, qty, userInfo.name, userInfo.phone));
     } else {
-      history.goBack();
+      console.log()
     }
     return () => {};
   }, []);

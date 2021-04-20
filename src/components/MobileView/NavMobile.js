@@ -6,6 +6,7 @@ import {
 } from "@ant-design/icons";
 import { Menu, Badge, Col, Image, Typography, Row, Modal } from "antd";
 import Avatar from "antd/lib/avatar/avatar";
+import NumberFormat from "react-number-format";
 import moment from "moment";
 
 
@@ -174,7 +175,14 @@ export default function NavMobile(props) {
                   <Title level={3}>{product.qty}</Title>
                 </Col>
                 <Col key={product.product}>
-                  <Text>Kshs {product.price}/=</Text>
+                <NumberFormat
+                value={product.price}
+                thousandSeparator={true}
+                displayType={"text"}
+                prefix="Ksh "
+                suffix=" /="
+                
+              />
                 </Col>
               </Row>
             ))}

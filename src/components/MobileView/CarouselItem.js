@@ -23,6 +23,7 @@ import CarouselHeader from "../Desktop/CarouselHeader";
 import { useState } from "react";
 import Cookie from "js-cookie";
 
+
 const { Meta } = Card;
 const { Text } = Typography;
 const posts = [1, 2, 3, 4, 5];

@@ -28,8 +28,8 @@ export default function ShippingScreen() {
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
   const dispatch = useDispatch();
-  const paymentHandler = ( amount) => {
-    dispatch(makePayment(userInfo.address, amount));
+  const paymentHandler = async ( amount) => {
+    await dispatch(makePayment(userInfo.address, amount));
   };
 
   const confirmPay = async (checkoutrequestID) => {

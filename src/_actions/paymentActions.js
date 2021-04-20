@@ -19,7 +19,7 @@ const makePayment = (phone, amount) => async (dispatch) => {
       console.log(response)
     dispatch({ type: MAKE_PAYMENT_SUCCESS, payload: response });
 
-    })
+    }).catch(err=>console.log(err))
   } catch (error) {
     dispatch({ type: MAKE_PAYMENT_FAIL, payload: error.message });
   }

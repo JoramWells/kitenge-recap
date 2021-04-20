@@ -85,9 +85,12 @@ function CarouselItem(props) {
 
   useEffect(() => {
     setUser(userInfo);
+    // setCart(cartItems)
+
     dispatch(listProducts());
 
-    return () => {};
+    return () => {
+    };
   }, []);
   console.log(cart1);
 

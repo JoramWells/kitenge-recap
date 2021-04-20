@@ -13,7 +13,7 @@ const addToCart = (productId, qty, username, phone) => async (
 ) => {
   try {
     const { data } = await axios.get(
-      `http://localhost:5000/product/${productId}`
+      `/product/${productId}`
     );
     dispatch({
       type: ADD_TO_CART,

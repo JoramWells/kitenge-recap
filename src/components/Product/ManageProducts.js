@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {  Button, Modal, Input, Form, Upload,Image, message,Table, Space, Dropdown } from "antd";
+import {  Button, Modal, Input, Form, Upload,Row,Col, message} from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import {
   deleteProduct,
@@ -7,8 +7,6 @@ import {
   updateProduct,
 } from "../../_actions/productActions";
 import {  UploadOutlined } from "@ant-design/icons";
-
-
 
 
 export default function ManageProducts(props) {
@@ -75,51 +73,51 @@ export default function ManageProducts(props) {
     setIsModalVisible(false);
   };
 
-  const columns = [
-    {
-      title: "id ",
-      dataIndex: "id",
-      key: "id",
-    },
-    {
-      title: "product_name",
-      dataIndex: "product_name",
-      key: "product_name",
-    },
-    {
-      title: "price",
-      dataIndex: "price",
-      key: "price",
-    },
-    {
-      title: "category",
-      dataIndex: "category",
-      key: "category",
-    },
-    {
-      title: "image",
-      dataIndex: "image",
-      key: "image",
-      render: (img) => (
-        <Image src={img} alt="image file" style={{ width: "50px" }} />
-      ),
-    },
-    {
-      title: 'Action',
-      dataIndex: 'operation',
-      key: 'operation',
-      render: () => (
-        <Space size="middle">
+  // const columns = [
+  //   {
+  //     title: "id ",
+  //     dataIndex: "id",
+  //     key: "id",
+  //   },
+  //   {
+  //     title: "product_name",
+  //     dataIndex: "product_name",
+  //     key: "product_name",
+  //   },
+  //   {
+  //     title: "price",
+  //     dataIndex: "price",
+  //     key: "price",
+  //   },
+  //   {
+  //     title: "category",
+  //     dataIndex: "category",
+  //     key: "category",
+  //   },
+  //   {
+  //     title: "image",
+  //     dataIndex: "image",
+  //     key: "image",
+  //     render: (img) => (
+  //       <Image src={img} alt="image file" style={{ width: "50px" }} />
+  //     ),
+  //   },
+  //   {
+  //     title: 'Action',
+  //     dataIndex: 'operation',
+  //     key: 'operation',
+  //     render: () => (
+  //       <Space size="middle">
 
-              <Button onClick={() => showModal(...posts)}>Edit</Button>
+  //             <Button onClick={() => showModal(...posts)}>Edit</Button>
 
-          <Button>Delete</Button>
+  //         <Button>Delete</Button>
   
   
-        </Space>
-      ),
-    },
-  ];
+  //       </Space>
+  //     ),
+  //   },
+  // ];
 
   const prop = {
     name: "file",
@@ -164,44 +162,44 @@ export default function ManageProducts(props) {
       ) : error ? (
         <div>{error}</div>
       ) : (
-        <Table dataSource={posts} columns={columns}/>
-        // <Row justify="space-around" align="middle">
-        //   <Col>
-        //     <table>
-        //       <thead>
-        //         <th>id</th>
-        //         <th>name</th>
-        //         <th>price</th>
-        //         <th>category</th>
-        //         <th>image</th>
-        //         <th>action</th>
-        //       </thead>
-        //       <tbody>
-        //         {posts.map((item) => (
-        //           <tr key={item.id}>
-        //             <td>{item.id}</td>
-        //             <td>{item.product_name}</td>
-        //             <td>{item.price}</td>
-        //             <td>{item.category}</td>
-        //             <td>
-        //               <img
-        //                 src={item.image}
-        //                 style={{ width: "100px" }}
-        //                 alt="dosjfljdsfdj"
-        //               />
-        //             </td>
-        //             <td>
-        //               <Button onClick={() => showModal(item)}>Edit</Button>
-        //               <Button onClick={() => deleteHandler(item.id)}>
-        //                 Delete
-        //               </Button>
-        //             </td>
-        //           </tr>
-        //         ))}
-        //       </tbody>
-        //     </table>
-        //   </Col>
-        // </Row>
+        // <Table dataSource={posts} columns={columns}/>
+        <Row justify="space-around" align="middle">
+          <Col>
+            <table>
+              <thead>
+                <th>id</th>
+                <th>name</th>
+                <th>price</th>
+                <th>category</th>
+                <th>image</th>
+                <th>action</th>
+              </thead>
+              <tbody>
+                {posts.map((item) => (
+                  <tr key={item.id}>
+                    <td>{item.id}</td>
+                    <td>{item.product_name}</td>
+                    <td>{item.price}</td>
+                    <td>{item.category}</td>
+                    <td>
+                      <img
+                        src={item.image}
+                        style={{ width: "100px" }}
+                        alt="dosjfljdsfdj"
+                      />
+                    </td>
+                    <td>
+                      <Button onClick={() => showModal(item)}>Edit</Button>
+                      <Button onClick={() => deleteHandler(item.id)}>
+                        Delete
+                      </Button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </Col>
+        </Row>
       )}
       <Modal
         title="Edit products"

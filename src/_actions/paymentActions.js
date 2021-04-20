@@ -14,8 +14,12 @@ import {
 const makePayment = (phone, amount) => async (dispatch) => {
   dispatch({ type: MAKE_PAYMENT_REQUEST, payload: { phone, amount } });
   try {
-    const { data } = await axios.post("/mpes/stk", { phone, amount });
-    dispatch({ type: MAKE_PAYMENT_SUCCESS, payload: data });
+    await axios.post("/mpes/stk", { phone, amount })
+    .then(response=>{
+      console.log(response)
+    dispatch({ type: MAKE_PAYMENT_SUCCESS, payload: response });
+
+    })
   } catch (error) {
     dispatch({ type: MAKE_PAYMENT_FAIL, payload: error.message });
   }

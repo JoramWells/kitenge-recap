@@ -55,9 +55,7 @@ export default function CartScreen(props) {
   const productId = props.match.params.id;
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
-  if (!userInfo) {
-    history.push("/");
-  }
+
   const qty = props.location.search
     ? Number(props.location.search.split("=")[1])
     : 1;

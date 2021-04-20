@@ -196,13 +196,9 @@ export default function ProductDetail(props) {
 
 }
 
-
-
                     setSubmitting(false);
                   }, 500);
-                  setTimeout(
-                    5000
-                  );
+
                 }}
               >
                 {(props) => {
@@ -293,7 +289,7 @@ export default function ProductDetail(props) {
                           htmlType="submit"
                           type="primary"
                           onClick={handleSubmit}
-                          disabled={isSubmitting}
+                          loading={isSubmitting}
                           // disabled={!phone}
                           block
                           style={{ border: "none" }}

@@ -1,11 +1,10 @@
 import React, { Suspense, lazy } from "react";
-import loadable from '@loadable/component'
 import "./App.css";
 import { Spin, Row, Col } from "antd";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { LoadingOutlined } from "@ant-design/icons";
-import Footer from "./components/Footer";
-import Top from "./components/Top";
+// import Footer from "./components/Footer";
+// import Top from "./components/Top";
 import PaymentScreen from "./components/Shipping/PaymentScreen";
 import PlaceOrderScreen from "./components/Shipping/PlaceOrderScreen";
 import NavigationResponsive from "./components/NavigationResponsive";
@@ -33,7 +32,6 @@ function App() {
 
   return (
     <>
-      <Top />
       <NavigationResponsive />
 
       <Suspense

@@ -28,7 +28,7 @@ export default function ShippingScreen() {
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
   const dispatch = useDispatch();
-  const paymentHandler = (phone, amount) => {
+  const paymentHandler = ( amount) => {
     dispatch(makePayment(userInfo.address, amount));
   };
 
@@ -51,10 +51,10 @@ export default function ShippingScreen() {
             </Descriptions.Item>
           </Descriptions>
 
-          {cartItems.map((product) => (
+          {cartItems.map((index,product) => (
             <Descriptions
               style={{ marginTop: "1rem" }}
-              key={product.id}
+              key={index}
               size="small"
               bordered
               title={product.product_name}

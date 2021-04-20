@@ -19,6 +19,7 @@ import { listProducts } from "../../_actions/productActions";
 import {  EllipsisOutlined,   ShoppingOutlined } from "@ant-design/icons";
 import { addToCart } from "../../_actions/cartActions";
 import NavMobile from "./NavMobile";
+import CarouselHeader from "../Desktop/CarouselHeader";
 
 const { Meta } = Card;
 const { Text } = Typography;
@@ -56,8 +57,6 @@ const renderSkeleton = posts.map((post, index) => {
   );
 });
 
-
-
 function CarouselItem(props) {
   const dispatch = useDispatch();
   const ProductList = useSelector((state) => state.productList);
@@ -91,6 +90,8 @@ function CarouselItem(props) {
   return (
     <>
     <NavMobile />
+    <CarouselHeader />
+
     <div className="mobile__carousel" style={{ backgroundColor: "#F8F8F8" }}>
       {loading ? (
         <Row justify="space-around" align="middle">

@@ -21,7 +21,7 @@ function NavigationBar() {
         zIndex: 1,
         width: "100%",
         position: "sticky",
-        top: "65px",
+        top: "0px",
         display: "block",
       }}
       className="desktop__navbar"

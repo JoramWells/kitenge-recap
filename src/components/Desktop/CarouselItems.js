@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { listProducts } from "../../_actions/productActions";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Row, Col, Typography, Card, Skeleton, Form, Empty } from "antd";
+import CarouselHeader from "./CarouselHeader";
 
 const { Text } = Typography;
 const { Meta } = Card;
@@ -65,6 +66,7 @@ export default function CarouselItems() {
   }, []);
   return (
     <div style={{ padding: "20px" }}>
+      <CarouselHeader/>
       {loading ? (
         <Row justify="space-around" align="middle">
           {renderSkeleton}

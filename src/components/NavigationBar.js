@@ -30,7 +30,7 @@ function NavigationBar() {
       <nav className="menu">
         <div className="menu__logo">
           <Link to="/">
-            <HomeOutlined style={{ fontSize: "1.8rem", paddingTop: "0.7rem" }} />
+            <HomeOutlined style={{ fontSize: "1.8rem", paddingTop: "1rem" }} />
           </Link>
         </div>
         <div className="menu__container">

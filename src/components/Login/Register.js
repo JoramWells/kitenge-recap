@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { register } from "../../_actions/userActions";
 import { GoogleLogin } from "react-google-login";
 import PhoneInput from "react-phone-input-2";

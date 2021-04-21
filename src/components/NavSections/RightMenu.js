@@ -98,35 +98,23 @@ function RightMenu(props) {
       return (
         <Space>
           <Menu mode="horizontal">
-            <Menu.Item>
-              <Badge
-                count={!payments ? 0 : payments.length}
-                style={{ backgroundColor: "green" }}
-              >
-                <UnorderedListOutlined
-                  style={{ fontSize: "1.5rem", fontWeight: "bold" }}
-                />
-              </Badge>
-              <a href="/payments" style={{ padding: "0" }}>
-                Payments
-              </a>
-            </Menu.Item>
+
             <Menu.Item>
               <Badge count={cartItems.length}>
                 <ShoppingCartOutlined
                   onClick={showModal}
-                  style={{ fontSize: "1.5rem", fontWeight: "bold" }}
+                  style={{ fontSize: "1.8rem", margin:"0" }}
                 />
               </Badge>
-              Cart
+              
             </Menu.Item>
             <Menu.Item>
-              <Badge count={cartItems.length}>
+              <Badge dot count={cartItems.length}>
                 <MailOutlined
-                  style={{ fontSize: "1.5rem", fontWeight: "bold" }}
+                  style={{ fontSize: "1.5rem", margin:"0" }}
                 />
               </Badge>
-              Inbox
+              
             </Menu.Item>
             <SubMenu title={<UserOutlined style={{ fontSize: "1.5rem" }} />}>
               <Menu.Item style={{ paddingLeft: "85px", margin: "auto" }}>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import {
   HomeOutlined,
+  LogoutOutlined,
   MailOutlined,
   QuestionCircleOutlined,
   SettingOutlined,
@@ -150,7 +151,7 @@ export default function NavMobile(props) {
             <div className="menu__logo">
               <a href="/">
                 <HomeOutlined
-                  style={{ fontSize: "1.5rem", paddingTop: "1rem" }}
+                  style={{ fontSize: "1.7rem", paddingTop: "1.3rem" }}
                 />
               </a>
             </div>
@@ -166,7 +167,7 @@ export default function NavMobile(props) {
               <Menu.Item
                 icon={
                   <Badge dot count={1} style={{ backgroundColor: "green" }}>
-                    <MailOutlined style={{ fontSize: "1.3rem" }} />
+                    <MailOutlined style={{ fontSize: "1.3rem", margin:"0" }} />
                   </Badge>
                 }
               ></Menu.Item>
@@ -180,7 +181,7 @@ export default function NavMobile(props) {
               </Menu.Item>
 
               <SubMenu
-                style={{ marginBottom: "0.4rem" }}
+                style={{ marginBottom: "0.4rem", borderRadius:"10px" }}
                 title={
                   <Avatar
                     src={props.user.avatar}
@@ -188,7 +189,13 @@ export default function NavMobile(props) {
                   />
                 }
               >
-                <Menu.Item>{props.user.email}</Menu.Item>
+                <Menu.Item style={{margin:"0"}}>{props.user.email}</Menu.Item>
+                <Menu.Item style={{justifyContent:"space-around", display:"flex", margin:"0"}}>
+                <Button style={{borderRadius:"50px"}}>
+                  <Link to="/register">Manage account</Link>
+                </Button>
+              </Menu.Item>
+              <Menu.Item style={{justifyContent:"space-around", display:"flex", margin:"0"}}>Logout</Menu.Item>
               </SubMenu>
             </Menu>
             {/* navbar */}

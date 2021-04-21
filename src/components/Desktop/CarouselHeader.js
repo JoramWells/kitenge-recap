@@ -52,7 +52,7 @@ export default function CarouselHeader() {
   }, []);
   return (
     <>
-      <Row justify="space-around" align="middle">
+      <>
         {loading ? (
           <Row justify="space-around" align="middle">
             <Col>
@@ -84,7 +84,8 @@ export default function CarouselHeader() {
         ) : error ? (
           <div>{error}</div>
         ) : (
-          <Col md={12} sm={8} style={{ padding: "1rem", margin: "1rem" }}>
+          <Row justify="space-around" align="middle">
+            <Col md={12} sm={2} style={{ padding: "0.5rem", margin: "1rem" }}>
             <Carousel
               swipeable={false}
               draggable={false}
@@ -110,8 +111,10 @@ export default function CarouselHeader() {
               ))}
             </Carousel>
           </Col>
+          </Row>
+
         )}
-      </Row>
+      </>
 
       <Row
         hidden={show}

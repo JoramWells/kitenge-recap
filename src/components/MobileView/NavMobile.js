@@ -36,7 +36,6 @@ const columns = [
 
 
 const { SubMenu } = Menu;
-const {  Title } = Typography;
 export default function NavMobile(props) {
   const [visible, setVisible] = useState(false);
   const handleOk = () => {
@@ -53,7 +52,7 @@ export default function NavMobile(props) {
       <nav
         className="menu"
         style={{
-          position: "sticky",
+          position: "fixed",
           display: "block",
           width: "100%",
           zIndex: "1",
@@ -81,7 +80,7 @@ export default function NavMobile(props) {
         <nav
           className="menu"
           style={{
-            position: "sticky",
+            position: "fixed",
             display: "block",
             width: "100%",
             zIndex: "1",
@@ -133,7 +132,7 @@ export default function NavMobile(props) {
           <nav
             className="menu"
             style={{
-              position: "sticky",
+              position: "fixed",
               display: "block",
               width: "100%",
               zIndex: "1",

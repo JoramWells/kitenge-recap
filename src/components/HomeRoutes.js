@@ -1,6 +1,5 @@
 import React from "react";
-import CarouselHeader from './Desktop/CarouselHeader'
-// import RecentItemsBar from './RecentItemsBar'
+// import CarouselHeader from './Desktop/CarouselHeader'
 import DesktopMobile from './DesktopMobile'
 
 export default function HomeRoutes() {

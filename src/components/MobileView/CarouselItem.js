@@ -101,7 +101,7 @@ function CarouselItem(props) {
       <NavMobile user={user} cart={cart1} />
       <CarouselHeader />
 
-      <div className="mobile__carousel" style={{ backgroundColor: "#F8F8F8" }}>
+      <div className="mobile__carousel" style={{ backgroundColor: "#F8F8F8", marginTop:"5rem" }}>
         {loading ? (
           <Row justify="space-around" align="middle">
             {renderSkeleton}

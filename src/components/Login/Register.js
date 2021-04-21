@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../../_actions/userActions";
@@ -7,6 +7,7 @@ import PhoneInput from "react-phone-input-2";
 import { useHistory } from "react-router-dom";
 import { Row, Col, Form, Input, Button, Avatar, Card, message } from "antd";
 import {
+  CloseCircleOutlined,
   LockOutlined,
   MailOutlined,
   StopOutlined,
@@ -14,9 +15,9 @@ import {
 } from "@ant-design/icons";
 const Cookie = require("js-cookie");
 
-
-export default function SignUp(props) {
-  const CLIENT_ID = "266388441735-5a4sfpj0lpk8nvjkf52ppoqqul0139st.apps.googleusercontent.com"
+export default function SignUp() {
+  const CLIENT_ID =
+    "266388441735-5a4sfpj0lpk8nvjkf52ppoqqul0139st.apps.googleusercontent.com";
   const history = useHistory();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -24,39 +25,26 @@ export default function SignUp(props) {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [address, setAddress] = useState("");
-  const userRegister = useSelector((state) => state.userRegister);
-  const { userInfo } = userRegister;
   const dispatch = useDispatch();
-  const redirect = props.location.search
-    ? props.location.search.split("=")[1]
-    : "/";
-  // useEffect(() => {
-  //   if (userInfo)
-  //     return () => {
-  //       history.goBack();
-  //     };
-  // }, [userInfo]);
+
+  const closeHandler = () => {
+    history.goBack();
+  };
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    await dispatch(
-      register(name, email, password, avatar, phone, address));
-      const userFailure = Cookie.getJSON('userFailure')
-      if(!userFailure){
-      console.log()
-}
-else
-message.warn(userFailure.message)
+    await dispatch(register(name, email, password, avatar, phone, address));
+    const userFailure = Cookie.getJSON("userFailure");
+    if (!userFailure) {
+      console.log();
+    } else message.warn(userFailure.message);
 
-const userSuccess = Cookie.getJSON('userInfo')
-if(!userSuccess)
-console.log()
-else{
-  message.success('Successfully login')
-  history.goBack()
-
-}
-
+    const userSuccess = Cookie.getJSON("userInfo");
+    if (!userSuccess) console.log();
+    else {
+      message.success("Successfully login");
+      history.goBack();
+    }
   };
 
   const responseSuccess = (response) => {
@@ -66,9 +54,8 @@ else{
 
     setPassword("JoramWells18.");
     // props.history.push('/')
-    console.log(response.tokenObj.access_token)
-    console.log(response)
-
+    console.log(response.tokenObj.access_token);
+    console.log(response);
   };
   const responseFailure = (response) => {
     console.log(response);
@@ -83,7 +70,18 @@ else{
         style={{ marginTop: "0.5rem" }}
       >
         <Card style={{ width: "25rem" }}>
-          <Avatar src={avatar} style={{ margin: "0.3rem" }} />
+          <Row justify="space-between" align="middle">
+            <Col>
+              <Avatar src={avatar} style={{ margin: "0.3rem" }} />
+            </Col>
+            <Col>
+              <CloseCircleOutlined
+                className="close"
+                style={{ fontSize: "1.5rem" }}
+                onClick={closeHandler}
+              />
+            </Col>
+          </Row>
 
           <Form layout="vertical" size="large" onSubmit={submitHandler}>
             <Form.Item required>
@@ -181,16 +179,14 @@ else{
               />
             </Form.Item>
             <Form.Item>
-            <GoogleLogin
-                  clientId= {CLIENT_ID}
-                  buttonText="Sign in with Google"
-                  onSuccess={responseSuccess}
-                  onFailure={responseFailure}
-                  isSignedIn={true}
-                  style={{ display: "block" }}
-                  
-                />
-
+              <GoogleLogin
+                clientId={CLIENT_ID}
+                buttonText="Sign in with Google"
+                onSuccess={responseSuccess}
+                onFailure={responseFailure}
+                isSignedIn={true}
+                style={{ display: "block" }}
+              />
             </Form.Item>
             <Form.Item>
               <Button
@@ -203,22 +199,15 @@ else{
               </Button>
             </Form.Item>
 
-
             <Row
               justify="space-around"
               align="middle"
               style={{ padding: "1rem" }}
             >
               <Col>
-                <Link
-                  to="/login"
-                >
-                  Already have an account? Sign in
-                </Link>
+                <Link to="/login">Already have an account? Sign in</Link>
               </Col>
-              <Col>
-
-              </Col>
+              <Col></Col>
             </Row>
           </Form>
         </Card>

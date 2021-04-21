@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import {
   HomeOutlined,
   MailOutlined,
+  QuestionCircleOutlined,
+  SettingOutlined,
   ShoppingCartOutlined,
 } from "@ant-design/icons";
-import { Menu, Badge, Col, Image, Row, Modal,Table } from "antd";
+import { Menu, Badge, Col, Image, Row, Modal,Table,Button } from "antd";
 import Avatar from "antd/lib/avatar/avatar";
+import {Link} from 'react-router-dom'
 import moment from "moment";
 import Cookie from "js-cookie";
 
@@ -77,7 +80,7 @@ export default function NavMobile(props) {
       </nav>
     );
   } else {
-    if (!props.cart) {
+    if (!cartItems) {
       return (
         <nav
           className="menu"
@@ -97,20 +100,17 @@ export default function NavMobile(props) {
           </div>
           <Menu
             mode="horizontal"
-            style={{ justifyContent: "space-between", float: "right" }}
+            style={{ justifyContent: "space-between", float: "right", border:"0" }}
           >
-            <Menu.Item
-              icon={
-                <Badge count={0} style={{ backgroundColor: "green" }}>
-                  <MailOutlined style={{ fontSize: "1.3rem" }} />
-                </Badge>
-              }
-            ></Menu.Item>
+
             <Menu.Item>
               <Badge dot count={0}>
                 <ShoppingCartOutlined style={{ fontSize: "1.5rem" }} />
               </Badge>
             </Menu.Item>
+            <SubMenu title={<QuestionCircleOutlined style={{fontSize:"1.3rem"}} />}> </SubMenu>
+            <SubMenu title={<SettingOutlined style={{fontSize:"1.3rem"}} />}> </SubMenu>
+
 
             <SubMenu
               style={{ marginBottom: "0.4rem" }}
@@ -124,6 +124,12 @@ export default function NavMobile(props) {
             >
 
               <Menu.Item>{props.user.email}</Menu.Item>
+              <Menu.Item style={{justifyContent:"space-around", display:"flex"}}>
+                <Button style={{borderRadius:"50px"}}>
+                  <Link to="/register">Manage account</Link>
+                </Button>
+              </Menu.Item>
+              <Menu.Item style={{justifyContent:"space-around", display:"flex", margin:"0"}}>Logout</Menu.Item>
             </SubMenu>
           </Menu>
         </nav>

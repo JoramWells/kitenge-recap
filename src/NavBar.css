@@ -138,3 +138,10 @@
 .reverse__cart:hover {
   background-color: #fdba45;
 }
+.close :hover{
+  cursor: pointer;
+  color: #fdba45;
+}
+.close{
+  color: #404040;
+}

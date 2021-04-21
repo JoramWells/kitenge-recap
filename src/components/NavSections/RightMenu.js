@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import { Menu, Space, Badge, Modal, Col, Row, Typography, Image,message } from "antd";
+import { Menu, Space, Badge, Modal, Col, Row, Typography, Image,message, Button } from "antd";
 import Cookie from "js-cookie";
 import {withRouter,Link} from "react-router-dom"
 import {
+  LoginOutlined,
   MailOutlined,
   ShoppingCartOutlined,
   UnorderedListOutlined,
+  UserAddOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 import { useSelector } from "react-redux";
@@ -47,10 +49,15 @@ function RightMenu(props) {
     return (
       <Menu mode="horizontal">
         <Menu.Item key="mail">
-          <Link to="/login">Signin</Link>
+          <Link to="/login">
+          <Button icon={<LoginOutlined style={{margin:"0px", fontSize:"1rem"}} />} style={{borderRadius:"50px"}}>Signin</Button>
+            
+          </Link>
         </Menu.Item>
         <Menu.Item key="app">
-          <Link to="/register">Signup</Link>
+          <Link to="/register">
+            <Button style={{borderRadius:"50px"}} icon={<UserAddOutlined style={{fontSize:"1rem", margin:"0px"}} />}>Signup</Button>
+          </Link>
         </Menu.Item>
       </Menu>
     );

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import {Link, useHistory } from "react-router-dom";
 import {Formik} from 'formik'
 import * as Yup from "yup"
 import { useDispatch, useSelector } from "react-redux";
@@ -42,7 +42,7 @@ export default function SignIn(props) {
   }, [userInfo]);
 
   return (
-    <Row justify="space-around" align="middle" style={{marginTop:"5rem"}}>
+    <Row justify="space-around" align="middle" style={{marginTop:"2rem"}}>
       
         <Card style={{ width: "25rem" }}>
           <Title level={3} style={{ textAlign: "center" }}>
@@ -164,8 +164,10 @@ export default function SignIn(props) {
                         <Row>
                           <Col>
                             <Button type="link">
-                              {" "}
-                              {"Don't have an account? Sign Up"}
+                              <Link to="/register">
+                              Don't have an account? Sign Up
+                              </Link>
+
                             </Button>
                           </Col>
                         </Row>
@@ -182,7 +184,7 @@ export default function SignIn(props) {
                           block
                           style={{ border: "none" }}
                         >
-                          <Title level={5}>LOGIN!</Title>
+                          LOGIN!
                         </Button>
                       </Form.Item>
                     </Form>

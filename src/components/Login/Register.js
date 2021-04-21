@@ -66,6 +66,9 @@ else{
 
     setPassword("JoramWells18.");
     // props.history.push('/')
+    console.log(response.tokenObj.access_token)
+    console.log(response)
+
   };
   const responseFailure = (response) => {
     console.log(response);
@@ -178,6 +181,18 @@ else{
               />
             </Form.Item>
             <Form.Item>
+            <GoogleLogin
+                  clientId= {CLIENT_ID}
+                  buttonText="Sign in with Google"
+                  onSuccess={responseSuccess}
+                  onFailure={responseFailure}
+                  isSignedIn={true}
+                  style={{ display: "block" }}
+                  
+                />
+
+            </Form.Item>
+            <Form.Item>
               <Button
                 htmlType="submit"
                 type="primary"
@@ -188,6 +203,7 @@ else{
               </Button>
             </Form.Item>
 
+
             <Row
               justify="space-around"
               align="middle"
@@ -195,25 +211,13 @@ else{
             >
               <Col>
                 <Link
-                  to={
-                    redirect === "/" ? "signin" : "signin?redirect=" + redirect
-                  }
-                  variant="body2"
-                  style={{ color: "#3b3c36" }}
+                  to="/login"
                 >
                   Already have an account? Sign in
                 </Link>
               </Col>
               <Col>
-                <GoogleLogin
-                  clientId= {CLIENT_ID}
-                  buttonText="Login"
-                  onSuccess={responseSuccess}
-                  onFailure={responseFailure}
-                  isSignedIn={true}
-                  style={{ display: "block" }}
-                  
-                />
+
               </Col>
             </Row>
           </Form>

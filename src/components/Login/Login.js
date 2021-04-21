@@ -42,7 +42,7 @@ export default function SignIn(props) {
   }, [userInfo]);
 
   return (
-    <Row justify="space-around" align="middle" style={{marginTop:"0.5rem"}}>
+    <Row justify="space-around" align="middle" style={{marginTop:"5rem"}}>
       
         <Card style={{ width: "25rem" }}>
           <Title level={3} style={{ textAlign: "center" }}>

@@ -28,7 +28,7 @@ const responsive = {
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
-    items: 1,
+    items: 4,
   },
 };
 
@@ -64,24 +64,20 @@ export default function CarouselHeader() {
                 }}
               ></Skeleton.Input>
             </Col>
+
             <Col>
               <Skeleton.Input
-                style={{ width: "70px", borderRadius: "50px", margin: "2rem" }}
+                style={{ width: "70px", borderRadius: "50px", margin: "1rem" }}
               ></Skeleton.Input>
             </Col>
             <Col>
               <Skeleton.Input
-                style={{ width: "70px", borderRadius: "50px", margin: "2rem" }}
+                style={{ width: "70px", borderRadius: "50px", margin: "1rem" }}
               ></Skeleton.Input>
             </Col>
             <Col>
               <Skeleton.Input
-                style={{ width: "70px", borderRadius: "50px", margin: "2rem" }}
-              ></Skeleton.Input>
-            </Col>
-            <Col>
-              <Skeleton.Input
-                style={{ width: "70px", borderRadius: "50px", margin: "2rem" }}
+                style={{ width: "70px", borderRadius: "50px", margin: "1rem" }}
               ></Skeleton.Input>
             </Col>
           </Row>
@@ -109,6 +105,7 @@ export default function CarouselHeader() {
                   onClick={() => fetchData(post.category)}
                 >
                   {post.category}
+                  
                 </Button>
               ))}
             </Carousel>

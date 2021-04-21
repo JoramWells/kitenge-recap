@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,lazy } from "react";
 import { withRouter } from "react-router-dom";
 import {
   Row,
@@ -18,10 +18,11 @@ import { Link } from "react-router-dom";
 import { listProducts } from "../../_actions/productActions";
 import { EllipsisOutlined, ShoppingOutlined } from "@ant-design/icons";
 import { addToCart } from "../../_actions/cartActions";
-import NavMobile from "./NavMobile";
-import CarouselHeader from "../Desktop/CarouselHeader";
 import { useState } from "react";
 import Cookie from "js-cookie";
+const NavMobile = lazy(() => import("./NavMobile"));
+const CarouselHeader = lazy(() => import("../Desktop/CarouselHeader"));
+
 
 
 const { Meta } = Card;
@@ -34,9 +35,9 @@ const openNotification = (message, description) => {
     description: description,
   });
 };
-const renderSkeleton = posts.map((post, index) => {
+const renderSkeleton = posts.map((post) => {
   return (
-    <Col key={index}>
+    <Col key={post}>
       <Form layout="vertical">
         <Form.Item>
           <Skeleton.Input style={{ width: "200px", height: "150px" }} /> <br />

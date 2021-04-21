@@ -25,7 +25,15 @@ ReactDOM.hydrate(
 );
 
 
-reportWebVitals(console.log);
+reportWebVitals();
+
+function getPosition(position) {
+  console.log(position.coords.latitude, position.coords.longitude);
+}
+if(navigator.geolocation){
+  navigator.geolocation.getCurrentPosition(getPosition);
+
+}
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

@@ -96,7 +96,6 @@ function CarouselItem(props) {
     return () => {
     };
   }, []);
-  console.log(cart1);
 
   return (
     <>

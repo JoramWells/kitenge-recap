@@ -22,7 +22,7 @@ const makePayment = (phone, amount) => async (dispatch) => {
         expires:1/28800
 
       })
-    dispatch({ type: MAKE_PAYMENT_SUCCESS, payload: response });
+    dispatch({ type: MAKE_PAYMENT_SUCCESS, payload: response.data });
 
     }).catch(err=>console.log(err))
   } catch (error) {
@@ -35,7 +35,7 @@ const confirmPayment = (requestID) => async (dispatch) => {
   try {
     await axios.post("/query", { requestID })
     .then(response=>{
-    // dispatch({ type: CONFIRM_PAYMENT_SUCCESS, payload: response.data });
+    dispatch({ type: CONFIRM_PAYMENT_SUCCESS, payload: response.data });
     Cookie.set('confirmPaid', JSON.stringify(response.data),{
       expires:1/28800
 

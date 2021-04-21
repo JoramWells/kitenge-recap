@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Row,
@@ -12,6 +12,7 @@ import {
   Image
 } from "antd";
 import { confirmPayment, makePayment } from "../../_actions/paymentActions";
+import { useEffect } from "react";
 
 const columns = [
   {
@@ -52,6 +53,7 @@ export default function ShippingScreen() {
   const userSignin = useSelector((state) => state.userSignin);
   const paymentDetail = useSelector((state) => state.payment);
   let qt = "";
+  const[payment,setPayment] = useState([])
   const { loading, paymentDetails, error } = paymentDetail;
   const confirmDetails = useSelector((state) => state.confirmDetails);
   const {
@@ -59,30 +61,66 @@ export default function ShippingScreen() {
     confirmPaymentDetails,
     errorDetails,
   } = confirmDetails;
+  
+  const payDetail = Cookie.getJSON("paymentDetails");  
   // const {} = confirmPayment;
   const { userInfo } = userSignin;
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
   const dispatch = useDispatch();
-  const paymentHandler = async (address, amount) => {
-    await dispatch(makePayment(address, amount));
+
+  const confirmPay =  () => {
+    {loading ?(message.info('loading...')): error?(message.warn('error')):(
+      // await dispatch(confirmPayment(paymentDetails.CheckoutrequestID))
+      console.log("pays " + paymentDetails)
+      
+    )}
+
   };
-  const payDetail = Cookie.getJSON("paymentDetails");
-  if (payDetail) {
-    message.info(payDetail.ResponseDescription);
-    setTimeout(async () => {
-      await dispatch(confirmPay(payDetail.CheckoutRequestID));
-    }, 2000);
-  }
-  const confirmPaid = Cookie.getJSON("confirmPaid");
-  if(confirmPaid){
+  console.log(payment)
+  const paymentHandler =async(e) => {
+    e.preventDefault()
+     await dispatch(makePayment("+254799980846", 1)); 
+    //  setTimeout( ()=>{
+    //    dispatch(confirmPayment(paymentDetails.CheckoutRequestID))
+
+    // },2000)   
+
+  };
+  // if(!payDetail){
+  // }else{
+  //   setTimeout( async()=>{
+  //     await dispatch(confirmPayment(paymentDetails.CheckoutrequestID))
+
+  //   },1000)
+
+  //   message.success('Finished..')
+
+  // }
+  useEffect(() => {
+          confirmPay()
+
+    console.log(payDetail)
+    return () => {
+      
+    }
+  }, [])
+
+
+
+  // if (payDetail) {
+  //   message.info(payDetail.ResponseDescription);
+  //   setTimeout(() => {
+  //      dispatch(confirmPay(payDetail.CheckoutRequestID));
+  //   }, 2000);
+  // }
+  // const confirmPaid = Cookie.getJSON("confirmPaid");
+  // if(confirmPaid){
     
-  }
+  // }
 
 
-  const confirmPay = async (checkoutrequestID) => {
-    await dispatch(confirmPayment(checkoutrequestID));
-  };
+
 
   return (
     <>
@@ -118,7 +156,7 @@ export default function ShippingScreen() {
             type="ghost"
             block
             size="large"
-            onClick={() => paymentHandler("+254799980846", 1)}
+            onClick={paymentHandler}
           >
             <Text>BUY NOW!!</Text>
           </Button>

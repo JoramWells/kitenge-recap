@@ -8,8 +8,43 @@ import {
   Descriptions,
   message,
   Space,
+  Table,
+  Image
 } from "antd";
 import { confirmPayment, makePayment } from "../../_actions/paymentActions";
+
+const columns = [
+  {
+    title: "Product",
+    dataIndex: "product_name",
+    key: "product_name",
+  },
+  {
+    title: "image",
+    dataIndex: "image",
+    key: "image",
+    render: (img) => (
+      <Image src={img} alt="image file" style={{ width: "50px" }} />
+    ),
+  },
+  {
+    title: "qty",
+    dataIndex: "qty",
+    key: "qty",
+  },
+
+  {
+    title: "Address",
+    dataIndex: "phone",
+    key: "phone",
+  },
+  {
+    title: "price",
+    dataIndex: "price",
+    key: "price",
+  },
+];
+
 const { Title, Text } = Typography;
 const Cookie = require("js-cookie");
 
@@ -63,28 +98,7 @@ export default function ShippingScreen() {
               {userInfo.address}
             </Descriptions.Item>
           </Descriptions>
-
-          {cartItems.map((product) => (
-            <Descriptions
-              style={{ marginTop: "1rem" }}
-              key={product.id}
-              size="small"
-              bordered
-              title={product.product_name}
-              column={{ xxl: 4, xl: 3, lg: 3, md: 3, sm: 2, xs: 1 }}
-            >
-              <Descriptions.Item>
-                ksh {product.price}, qty {product.qty}
-              </Descriptions.Item>
-              <Descriptions.Item>
-                <img
-                  src={product.image}
-                  style={{ width: "50px" }}
-                  alt="product"
-                />
-              </Descriptions.Item>
-            </Descriptions>
-          ))}
+          <Table columns={columns} dataSource={cartItems} />
         </Col>
       </Row>
       <Row justify="space-around" align="middle">

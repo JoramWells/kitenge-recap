@@ -97,7 +97,7 @@ function CarouselItem(props) {
 
   return (
     <>
-      <NavMobile user={userInfo} cart={cart1} />
+      <NavMobile user={user} cart={cart1} />
       <CarouselHeader />
 
       <div className="mobile__carousel" style={{ backgroundColor: "#F8F8F8" }}>

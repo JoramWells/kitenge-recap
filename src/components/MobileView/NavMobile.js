@@ -6,7 +6,6 @@ import {
 } from "@ant-design/icons";
 import { Menu, Badge, Col, Image, Typography, Row, Modal,Table } from "antd";
 import Avatar from "antd/lib/avatar/avatar";
-import NumberFormat from "react-number-format";
 import moment from "moment";
 
 const columns = [

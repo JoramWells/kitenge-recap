@@ -61,7 +61,7 @@ const renderSkeleton = posts.map((post, index) => {
 
 function CarouselItem(props) {
   const cartItems = Cookie.getJSON("cartItems");
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState([]);
   const [cart1, setCart] = useState([]);
   const dispatch = useDispatch();
   const ProductList = useSelector((state) => state.productList);

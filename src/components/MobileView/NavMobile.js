@@ -4,14 +4,40 @@ import {
   MailOutlined,
   ShoppingCartOutlined,
 } from "@ant-design/icons";
-import { Menu, Badge, Col, Image, Typography, Row, Modal } from "antd";
+import { Menu, Badge, Col, Image, Typography, Row, Modal,Table } from "antd";
 import Avatar from "antd/lib/avatar/avatar";
 import NumberFormat from "react-number-format";
 import moment from "moment";
 
+const columns = [
+  {
+    title: "Product Name",
+    dataIndex: "product_name",
+    key: "product_name",
+  },
+  {
+    title: "Image",
+    dataIndex: "image",
+    key: "image",
+    render: (img) => (
+      <Image src={img} alt="image file" style={{ width: "50px" }} />
+    ),
+  },
+  {
+    title: "Qty",
+    dataIndex: "qty",
+    key: "qty",
+  },{
+    title: "Price",
+    dataIndex: "price",
+    key: "price",
+  },
+];
+
+
 
 const { SubMenu } = Menu;
-const { Text, Title } = Typography;
+const {  Title } = Typography;
 export default function NavMobile(props) {
   const [visible, setVisible] = useState(false);
   const handleOk = () => {
@@ -162,30 +188,9 @@ export default function NavMobile(props) {
             {/* navbar */}
           </nav>
           <Modal visible={visible} onOk={handleOk} onCancel={handleCancel}>
-            {props.cart.map((product) => (
-              <Row justify="space-around" align="middle">
-                <Col>
-                  <Image
-                    src={product.image}
-                    alt="profile_pic"
-                    style={{ width: "50px" }}
-                  />
-                </Col>
-                <Col>
-                  <Title level={3}>{product.qty}</Title>
-                </Col>
-                <Col key={product.product}>
-                <NumberFormat
-                value={product.price}
-                thousandSeparator={true}
-                displayType={"text"}
-                prefix="Ksh "
-                suffix=" /="
-                
-              />
-                </Col>
-              </Row>
-            ))}
+            <Table dataSource={props.cart} columns={columns} />
+
+             
             <Row align="middle" justifyContent="space-between">
               <Col>
             <a href="/cart">Proceed to checkout</a>
@@ -198,4 +203,25 @@ export default function NavMobile(props) {
       );
     }
   }
-}
+} // <Row justify="space-around" align="middle">
+              //   <Col>
+              //     <Image
+              //       src={product.image}
+              //       alt="profile_pic"
+              //       style={{ width: "50px" }}
+              //     />
+              //   </Col>
+              //   <Col>
+              //     <Title level={3}>{product.qty}</Title>
+              //   </Col>
+              //   <Col key={product.product}>
+              //   <NumberFormat
+              //   value={product.price}
+              //   thousandSeparator={true}
+              //   displayType={"text"}
+              //   prefix="Ksh "
+              //   suffix=" /="
+                
+              // />
+              //   </Col>
+              // </Row>

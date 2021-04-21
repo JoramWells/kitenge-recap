@@ -1,5 +1,5 @@
 import React, { useEffect,lazy } from "react";
-import { withRouter } from "react-router-dom";
+import {  withRouter } from "react-router-dom";
 import {
   Row,
   Col,
@@ -11,6 +11,7 @@ import {
   notification,
   Popconfirm,
   message,
+  Switch
 } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -36,7 +37,7 @@ const openNotification = (message, description) => {
 };
 const renderSkeleton = posts.map((post) => {
   return (
-    <Col key={post}>
+    <Col key={post} >
       <Form layout="vertical">
         <Form.Item>
           <Skeleton.Input style={{ width: "200px", height: "150px" }} /> <br />

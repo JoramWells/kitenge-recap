@@ -5,12 +5,14 @@ import {withRouter,Link} from "react-router-dom"
 import {
   LoginOutlined,
   MailOutlined,
+  SettingOutlined,
   ShoppingCartOutlined,
   UnorderedListOutlined,
   UserAddOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 import { useSelector } from "react-redux";
+import Avatar from "antd/lib/avatar/avatar";
 
 const { Text, Title } = Typography;
 const { SubMenu } = Menu;
@@ -74,14 +76,14 @@ function RightMenu(props) {
                 />
               </Badge>
             </Menu.Item>
-            <SubMenu title={<UserOutlined style={{ fontSize: "1.5rem" }} />}>
-              <Menu.Item style={{ paddingLeft: "85px", margin: "auto" }}>
+            <SubMenu title={<Avatar src={userInfo.avatar} />}>
+              {/* <Menu.Item style={{ paddingLeft: "85px", margin: "auto" }}>
                 <img
                   src={userInfo.avatar}
                   alt="profile_pic"
                   style={{ width: "25px", borderRadius: "50px" }}
                 />
-              </Menu.Item>
+              </Menu.Item> */}
               <Menu.Item>{userInfo.email}</Menu.Item>
               <Menu.Item onClick={()=>logout()}>Logout</Menu.Item>
             </SubMenu>
@@ -116,15 +118,20 @@ function RightMenu(props) {
               </Badge>
               
             </Menu.Item>
-            <SubMenu title={<UserOutlined style={{ fontSize: "1.5rem" }} />}>
-              <Menu.Item style={{ paddingLeft: "85px", margin: "auto" }}>
-                <img
-                  src={userInfo.avatar}
-                  alt="profile_pic"
-                  style={{ width: "25px", borderRadius: "50px" }}
-                />
-              </Menu.Item>
+            <Menu.Item>
+              <SettingOutlined style={{fontSize:"1.5rem"}}/>
+
+            </Menu.Item>
+            <SubMenu title={<Avatar   src={userInfo.avatar} style={{marginBottom:"0.8rem", width:"30px", height:"inherit"}} />}>
+
               <Menu.Item>{userInfo.email}</Menu.Item>
+              <Menu.Item style={{justifyContent:"space-around", display:"flex", margin:"0"}}>
+                <Button style={{borderRadius:"50px"}}>
+                  <Link to="/register">Manage account</Link>
+                </Button>
+              </Menu.Item>
+              
+              <Menu.Item style={{justifyContent:"space-around", display:"flex", margin:"0"}}>Logout</Menu.Item>
             </SubMenu>
           </Menu>
           <Modal

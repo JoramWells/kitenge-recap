@@ -29,9 +29,9 @@ function NavigationBar() {
     >
       <nav className="menu">
         <div className="menu__logo">
-          <Link to="/">
-            <HomeOutlined style={{ fontSize: "1.8rem", paddingTop: "1rem" }} />
-          </Link>
+        <Link href="/" style={{ paddingTop: "1.1rem",color:"#484848" }}>
+                <b>OnlineShop</b>
+              </Link>
         </div>
         <div className="menu__container">
           {/* <div className="menu_left">
@@ -50,7 +50,7 @@ function NavigationBar() {
             <MenuOutlined style={{ fontSize: "1.5rem" }} />
           </Button>
           <Drawer
-            title="Basic Drawer"
+            title="My Menu"
             placement="right"
             className="menu_drawer"
             closable={false}

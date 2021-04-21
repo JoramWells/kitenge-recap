@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import {
-  HomeOutlined,
-  LogoutOutlined,
+
   MailOutlined,
   QuestionCircleOutlined,
   SettingOutlined,
   ShoppingCartOutlined,
 } from "@ant-design/icons";
-import { Menu, Badge, Col, Image, Row, Modal,Table,Button } from "antd";
+import { Menu, Badge, Col, Image, Row, Modal, Table, Button } from "antd";
 import Avatar from "antd/lib/avatar/avatar";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 import moment from "moment";
 import Cookie from "js-cookie";
 
@@ -31,14 +30,13 @@ const columns = [
     title: "Qty",
     dataIndex: "qty",
     key: "qty",
-  },{
+  },
+  {
     title: "Price",
     dataIndex: "price",
     key: "price",
   },
 ];
-
-
 
 const { SubMenu } = Menu;
 export default function NavMobile(props) {
@@ -65,9 +63,9 @@ export default function NavMobile(props) {
         }}
       >
         <div className="menu__logo">
-          <a href="/">
-            <HomeOutlined style={{ fontSize: "1.5rem" }} />
-          </a>
+        <a href="/" style={{ paddingTop: "1.1rem", color:"#484848" }}>
+                <b>Online Shop</b>
+              </a>
         </div>
 
         <Menu mode="horizontal" style={{ float: "right" }}>
@@ -93,44 +91,62 @@ export default function NavMobile(props) {
           }}
         >
           <div className="menu__logo">
-            <a href="/">
-              <HomeOutlined
-                style={{ fontSize: "1.5rem", paddingTop: "1rem" }}
-              />
-            </a>
+          <a href="/" style={{ paddingTop: "1.1rem", color:"#484848" }}>
+                <b>Online Shop</b>
+              </a>
           </div>
           <Menu
             mode="horizontal"
-            style={{ justifyContent: "space-between", float: "right", border:"0" }}
+            style={{
+              justifyContent: "space-between",
+              float: "right",
+              border: "0",
+            }}
           >
-
             <Menu.Item>
               <Badge dot count={0}>
                 <ShoppingCartOutlined style={{ fontSize: "1.5rem" }} />
               </Badge>
             </Menu.Item>
-            <SubMenu title={<QuestionCircleOutlined style={{fontSize:"1.3rem"}} />}> </SubMenu>
-            <SubMenu title={<SettingOutlined style={{fontSize:"1.3rem"}} />}> </SubMenu>
-
+            <SubMenu
+              title={<QuestionCircleOutlined style={{ fontSize: "1.3rem" }} />}
+            >
+              {" "}
+            </SubMenu>
+            <SubMenu title={<SettingOutlined style={{ fontSize: "1.3rem" }} />}>
+              {" "}
+            </SubMenu>
 
             <SubMenu
               style={{ marginBottom: "0.4rem" }}
-              
               title={
                 <Avatar
-                  src={props.user.avatar ? props.user.avatar: `http://gravatar.com/avatar/${moment().unix()}?d=identicon`}
+                  src={
+                    props.user.avatar
+                      ? props.user.avatar
+                      : `http://gravatar.com/avatar/${moment().unix()}?d=identicon`
+                  }
                   style={{ width: "1.5rem", height: "auto", margin: "0px" }}
                 />
               }
             >
-
               <Menu.Item>{props.user.email}</Menu.Item>
-              <Menu.Item style={{justifyContent:"space-around", display:"flex"}}>
-                <Button style={{borderRadius:"50px"}}>
+              <Menu.Item
+                style={{ justifyContent: "space-around", display: "flex" }}
+              >
+                <Button style={{ borderRadius: "50px" }}>
                   <Link to="/register">Manage account</Link>
                 </Button>
               </Menu.Item>
-              <Menu.Item style={{justifyContent:"space-around", display:"flex", margin:"0"}}>Logout</Menu.Item>
+              <Menu.Item
+                style={{
+                  justifyContent: "space-around",
+                  display: "flex",
+                  margin: "0",
+                }}
+              >
+                Logout
+              </Menu.Item>
             </SubMenu>
           </Menu>
         </nav>
@@ -149,10 +165,8 @@ export default function NavMobile(props) {
             }}
           >
             <div className="menu__logo">
-              <a href="/">
-                <HomeOutlined
-                  style={{ fontSize: "1.7rem", paddingTop: "1.3rem" }}
-                />
+              <a href="/" style={{ paddingTop: "1.1rem", color:"#484848" }}>
+                <b>Online Shop</b>
               </a>
             </div>
             <Menu
@@ -167,7 +181,7 @@ export default function NavMobile(props) {
               <Menu.Item
                 icon={
                   <Badge dot count={1} style={{ backgroundColor: "green" }}>
-                    <MailOutlined style={{ fontSize: "1.3rem", margin:"0" }} />
+                    <MailOutlined style={{ fontSize: "1.3rem", margin: "0" }} />
                   </Badge>
                 }
               ></Menu.Item>
@@ -181,7 +195,7 @@ export default function NavMobile(props) {
               </Menu.Item>
 
               <SubMenu
-                style={{ marginBottom: "0.4rem", borderRadius:"10px" }}
+                style={{ marginBottom: "0.4rem", borderRadius: "10px" }}
                 title={
                   <Avatar
                     src={props.user.avatar}
@@ -189,13 +203,29 @@ export default function NavMobile(props) {
                   />
                 }
               >
-                <Menu.Item style={{margin:"0"}}>{props.user.email}</Menu.Item>
-                <Menu.Item style={{justifyContent:"space-around", display:"flex", margin:"0"}}>
-                <Button style={{borderRadius:"50px"}}>
-                  <Link to="/register">Manage account</Link>
-                </Button>
-              </Menu.Item>
-              <Menu.Item style={{justifyContent:"space-around", display:"flex", margin:"0"}}>Logout</Menu.Item>
+                <Menu.Item style={{ margin: "0" }}>
+                  {props.user.email}
+                </Menu.Item>
+                <Menu.Item
+                  style={{
+                    justifyContent: "space-around",
+                    display: "flex",
+                    margin: "0",
+                  }}
+                >
+                  <Button style={{ borderRadius: "50px" }}>
+                    <Link to="/register">Manage account</Link>
+                  </Button>
+                </Menu.Item>
+                <Menu.Item
+                  style={{
+                    justifyContent: "space-around",
+                    display: "flex",
+                    margin: "0",
+                  }}
+                >
+                  Logout
+                </Menu.Item>
               </SubMenu>
             </Menu>
             {/* navbar */}
@@ -203,38 +233,14 @@ export default function NavMobile(props) {
           <Modal visible={visible} onOk={handleOk} onCancel={handleCancel}>
             <Table dataSource={props.cart} columns={columns} />
 
-             
             <Row align="middle" justifyContent="space-between">
               <Col>
-            <a href="/cart">Proceed to checkout</a>
-
+                <a href="/cart">Proceed to checkout</a>
               </Col>
             </Row>
-            
           </Modal>
         </>
       );
     }
   }
-} // <Row justify="space-around" align="middle">
-              //   <Col>
-              //     <Image
-              //       src={product.image}
-              //       alt="profile_pic"
-              //       style={{ width: "50px" }}
-              //     />
-              //   </Col>
-              //   <Col>
-              //     <Title level={3}>{product.qty}</Title>
-              //   </Col>
-              //   <Col key={product.product}>
-              //   <NumberFormat
-              //   value={product.price}
-              //   thousandSeparator={true}
-              //   displayType={"text"}
-              //   prefix="Ksh "
-              //   suffix=" /="
-                
-              // />
-              //   </Col>
-              // </Row>
+} 

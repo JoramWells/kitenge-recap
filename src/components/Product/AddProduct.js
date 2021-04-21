@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { saveProduct } from "../../_actions/productActions";
 import { CaretRightOutlined, UploadOutlined } from "@ant-design/icons";
 
@@ -26,8 +26,7 @@ export default function AddProduct(props) {
   const [image, setImage] = useState("");
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
-  const productSave = useSelector((state) => state.productSave);
-  // const { loading, products, error } = productSave;
+
   const dispatch = useDispatch();
 
   const prop = {
@@ -58,9 +57,8 @@ export default function AddProduct(props) {
     onChange(info) {
       if (info.file.status !== "uploading") {
         console.log(info.file, info.fileList);
-        // dispatch(saveProduct(name, shop, price, image, description));
       }
-      if (info.file.status === "done") {
+      if (info.file.status === "d/one") {
         setImage("/" + info.file.name);
         message.success(`${info.file.name}`);
       } else if (info.file.status === "error") {
@@ -69,12 +67,6 @@ export default function AddProduct(props) {
     },
   };
 
-  //   useEffect(() => {
-  //     if (userInfo)
-  //       return () => {
-  //         props.history.push("/");
-  //       };
-  //   }, [userInfo]);
 
   const productAdd = async (e) => {
     e.preventDefault();

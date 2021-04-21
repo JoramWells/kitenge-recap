@@ -4,9 +4,10 @@ import {
   MailOutlined,
   ShoppingCartOutlined,
 } from "@ant-design/icons";
-import { Menu, Badge, Col, Image, Typography, Row, Modal,Table } from "antd";
+import { Menu, Badge, Col, Image, Row, Modal,Table } from "antd";
 import Avatar from "antd/lib/avatar/avatar";
 import moment from "moment";
+import Cookie from "js-cookie";
 
 const columns = [
   {
@@ -37,6 +38,7 @@ const columns = [
 
 const { SubMenu } = Menu;
 export default function NavMobile(props) {
+  const cartItems = Cookie.getJSON("cartItems");
   const [visible, setVisible] = useState(false);
   const handleOk = () => {
     setVisible(false);

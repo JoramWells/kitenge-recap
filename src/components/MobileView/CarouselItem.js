@@ -19,7 +19,6 @@ import { listProducts } from "../../_actions/productActions";
 import { EllipsisOutlined, ShoppingOutlined } from "@ant-design/icons";
 import { addToCart } from "../../_actions/cartActions";
 import { useState } from "react";
-import Cookie from "js-cookie";
 const NavMobile = lazy(() => import("./NavMobile"));
 const CarouselHeader = lazy(() => import("../Desktop/CarouselHeader"));
 
@@ -61,7 +60,6 @@ const renderSkeleton = posts.map((post) => {
 });
 
 function CarouselItem(props) {
-  const cartItems = Cookie.getJSON("cartItems");
   const [user, setUser] = useState([]);
   const [cart1, setCart] = useState([]);
   const dispatch = useDispatch();
@@ -77,7 +75,9 @@ function CarouselItem(props) {
     } else {
       setTimeout(
         (await dispatch(addToCart(productId, 1, userInfo.name, userInfo.phone)),
-        setCart(cartItems)),
+        setCart(prevState =>{
+          return {...prevState,cartItems:prevState}
+        })),
         2000
       );
 

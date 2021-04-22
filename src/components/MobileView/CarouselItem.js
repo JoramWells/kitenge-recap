@@ -11,7 +11,6 @@ import {
   notification,
   Popconfirm,
   message,
-  Switch
 } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -22,8 +21,6 @@ import { addToCart } from "../../_actions/cartActions";
 import { useState } from "react";
 const NavMobile = lazy(() => import("./NavMobile"));
 const CarouselHeader = lazy(() => import("../Desktop/CarouselHeader"));
-
-
 
 const { Meta } = Card;
 const { Text } = Typography;

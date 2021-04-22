@@ -68,7 +68,7 @@ export default function NavMobile(props) {
               </a>
         </div>
 
-        <Menu mode="horizontal" style={{ float: "right" }}>
+        <Menu mode="horizontal" style={{ float: "right", border:"0" }}>
           <Menu.Item>
             <a href="/login">Login</a>
           </Menu.Item>

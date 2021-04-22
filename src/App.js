@@ -17,6 +17,7 @@ const ManageProducts = lazy(() =>
 const ShippingScreen = lazy(() =>
   import("./components/Shipping/ShippingScreen")
 );
+const Footer = lazy(() => import("./components/Footer"));
 
 const AddProduct = lazy(() => import("./components/Product/AddProduct"));
 const ProductDetail = lazy(() => import("./components/Product/ProductDetail"));
@@ -64,6 +65,7 @@ function App() {
             <Route path="/produc/manage" exact component={ManageProducts} />
           </Switch>
         </Router>
+        <Footer/>
       </Suspense>
     </>
   );

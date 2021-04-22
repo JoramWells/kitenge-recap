@@ -70,6 +70,7 @@ export default function Footer() {
         </Col>
       </Row>
       <div
+      className="footer"
         style={{
           backgroundColor: "rgb(22,22,29)",
           padding: "1rem",

@@ -1,5 +1,5 @@
-import React, { useEffect,lazy } from "react";
-import {  withRouter } from "react-router-dom";
+import React, { useEffect, lazy, useState } from "react";
+import { withRouter } from "react-router-dom";
 import {
   Row,
   Col,
@@ -8,36 +8,31 @@ import {
   Rate,
   Form,
   Skeleton,
-  notification,
   Popconfirm,
   message,
-  
+  Modal,
+  Button,
 } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
 import { listProducts } from "../../_actions/productActions";
-import { EllipsisOutlined, ShoppingOutlined } from "@ant-design/icons";
+import {
+  EllipsisOutlined,
+  ShoppingCartOutlined,
+  ShoppingOutlined,
+} from "@ant-design/icons";
 import { addToCart } from "../../_actions/cartActions";
-import { useState } from "react";
 const NavMobile = lazy(() => import("./NavMobile"));
 const CarouselHeader = lazy(() => import("../Desktop/CarouselHeader"));
-
-
 
 const { Meta } = Card;
 const { Text } = Typography;
 const posts = [1, 2, 3, 4, 5];
 
-const openNotification = (message, description) => {
-  notification.open({
-    message: message,
-    description: description,
-  });
-};
 const renderSkeleton = posts.map((post) => {
   return (
-    <Col key={post} >
+    <Col key={post}>
       <Form layout="vertical">
         <Form.Item>
           <Skeleton.Input style={{ width: "200px", height: "150px" }} /> <br />
@@ -68,6 +63,27 @@ function CarouselItem(props) {
   const { posts, loading, error } = ProductList;
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
+  const [visible, setVisible] = useState(false);
+  const [confirmLoading, setConfirmLoading] = useState(false);
+  const [modalText, setModalText] = useState("Content of the modal");
+
+  const showModal = () => {
+    setVisible(true);
+  };
+
+  const handleOk = () => {
+    setModalText("The modal will be closed after two seconds");
+    setConfirmLoading(true);
+    setTimeout(() => {
+      setVisible(false);
+      setConfirmLoading(false);
+    }, 2000);
+  };
+
+  const handleCancel = () => {
+    console.log("Clicked cancel button");
+    setVisible(false);
+  };
 
   const productAddToCart = async (productId, product_name) => {
     if (!userInfo) {
@@ -76,8 +92,8 @@ function CarouselItem(props) {
     } else {
       setTimeout(
         (await dispatch(addToCart(productId, 1, userInfo.name, userInfo.phone)),
-        setCart(prevState =>{
-          return {...prevState,cartItems:prevState}
+        setCart((prevState) => {
+          return { ...prevState, cartItems: prevState };
         })),
         2000
       );
@@ -86,15 +102,13 @@ function CarouselItem(props) {
     }
   };
 
-
   useEffect(() => {
     setUser(userInfo);
     // setCart(cartItems)
 
     dispatch(listProducts());
 
-    return () => {
-    };
+    return () => {};
   }, []);
 
   return (
@@ -102,7 +116,10 @@ function CarouselItem(props) {
       <NavMobile user={user} cart={cart1} />
       <CarouselHeader />
 
-      <div className="mobile__carousel" style={{ backgroundColor: "#F8F8F8", marginTop:"5rem" }}>
+      <div
+        className="mobile__carousel"
+        style={{ backgroundColor: "#F8F8F8", marginTop: "5rem" }}
+      >
         {loading ? (
           <Row justify="space-around" align="middle">
             {renderSkeleton}
@@ -113,8 +130,24 @@ function CarouselItem(props) {
           <Row justify="space-around" align="middle" gutter={[0, 16]}>
             {posts.map((item) => (
               <Col key={item.id}>
+                <Modal
+                  title="Product details"
+                  visible={visible}
+                  onOk={handleOk}
+                  confirmLoading={confirmLoading}
+                  onCancel={handleCancel}
+                >
+                  <Row justify="space-around" align="middle">
+                  {item.description}
+                  </Row>
+                  <Row justify="space-around" align="middle">
+                  <Button icon={<ShoppingCartOutlined />} onClick={()=>productAddToCart(item.id, item.product_name)} style={{marginTop:"0.5rem"}}>Add to cart</Button>
+
+                  </Row>
+                  
+                </Modal>
                 <Card
-                  style={{ width: "18rem", border: "0" }}
+                  style={{ width: "18rem",  }}
                   cover={
                     <LazyLoadImage
                       src={item.image}
@@ -123,28 +156,11 @@ function CarouselItem(props) {
                       style={{ width: "inherit" }}
                     />
                   }
-                  actions={[
-                    <Popconfirm
-                      placement="top"
-                      title={"Add product to cart"}
-                      okText="Yes"
-                      cancelText="No"
-                      onConfirm={() =>
-                        productAddToCart(item.id, item.product_name)
-                      }
-                    >
-                      <ShoppingOutlined
-                        key="cart"
-                        style={{ fontSize: "1.3rem" }}
-                      />
-                    </Popconfirm>,
-                    <EllipsisOutlined
-                      key="ellipsis"
-                      onClick={() =>
-                        openNotification(item.product_name, item.description)
-                      }
-                    />,
-                  ]}
+                  extra={
+                    <EllipsisOutlined onClick={showModal} key="ellipsis" style={{transform:"rotate(90deg)"}}/>
+
+                  }
+                 
                 >
                   <Link
                     to={`/product-detail/${item.id}/?category=${item.category}`}

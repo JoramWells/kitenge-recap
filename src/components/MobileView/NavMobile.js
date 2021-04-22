@@ -219,29 +219,14 @@ export default function NavMobile(props) {
                 style={{ marginBottom: "0.3rem", borderRadius: "10px", marginLeft:"0" }}
                 title={<SettingOutlined style={{ fontSize: "1.3rem" }} />}
               >
-                <Menu.Item style={{ margin: "0" }}>
-                  {userInfo.email}
-                </Menu.Item>
-                <Menu.Item
-                  style={{
-                    justifyContent: "space-around",
-                    display: "flex",
-                    margin: "0",
-                  }}
-                >
-                  <Button style={{ borderRadius: "50px" }}>
-                    <Link to="/register">Manage account</Link>
-                  </Button>
-                </Menu.Item>
-                <Menu.Item
-                  style={{
-                    justifyContent: "space-around",
-                    display: "flex",
-                    margin: "0",
-                  }}
-                >
-                  Logout
-                </Menu.Item>
+            <Menu.Item icon={<PlusOutlined/>}>
+              <Link to="/products/add">
+              Add Product
+              </Link>
+               
+              </Menu.Item>
+
+
               </SubMenu>
 
               <SubMenu

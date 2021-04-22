@@ -5,6 +5,8 @@ import {withRouter,Link, useHistory} from "react-router-dom"
 import {
   LoginOutlined,
   MailOutlined,
+  PlusOutlined,
+  QuestionCircleOutlined,
   SettingOutlined,
   ShoppingCartOutlined,
   UserAddOutlined,
@@ -68,13 +70,37 @@ function RightMenu(props) {
         <Space>
           <Menu mode="horizontal">
             <Menu.Item>
-              <Badge count={0}>
+              <Badge count={1}>
                 <ShoppingCartOutlined
                   onClick={showModal}
-                  style={{ fontSize: "1.7rem"}}
+                  style={{ fontSize: "1.7rem", margin:"0"}}
                 />
               </Badge>
             </Menu.Item>
+            <SubMenu
+              title={<QuestionCircleOutlined style={{ fontSize: "1.3rem" }} />}
+            >
+              <Menu.Item style={{margin:"0px"}} >Contact supplier</Menu.Item>
+              <Menu.Item style={{margin:"0px"}}>How to add product</Menu.Item>
+              <Menu.Item>Creating account</Menu.Item>
+              <Menu.Item>Tracking your order</Menu.Item>
+
+
+            </SubMenu>
+            <SubMenu
+                style={{  borderRadius: "10px", marginLeft:"0" }}
+                title={<SettingOutlined style={{ fontSize: "1.3rem" }} />}
+              >
+            <Menu.Item icon={<PlusOutlined/>}>
+              <Link to="/products/add">
+              Add Product
+              </Link>
+               
+              </Menu.Item>
+
+
+              </SubMenu>
+
             <SubMenu title={<Avatar src={userInfo.avatar} style={{width:"30px", height:"auto",marginBottom:"0.7rem"}} />}>
               {/* <Menu.Item style={{ paddingLeft: "85px", margin: "auto" }}>
                 <img
@@ -117,10 +143,42 @@ function RightMenu(props) {
               </Badge>
               
             </Menu.Item>
-            <Menu.Item>
-              <SettingOutlined style={{fontSize:"1.5rem"}}/>
+            <SubMenu
+                style={{ marginBottom: "0.3rem", borderRadius: "10px", marginLeft:"0" }}
+                title={<SettingOutlined style={{ fontSize: "1.3rem" }} />}
+              >
+            <Menu.Item icon={<PlusOutlined/>}>
+              <Link to="/products/add">
+              Add Product
+              </Link>
+               
+              </Menu.Item>
 
-            </Menu.Item>
+
+              </SubMenu>
+            <SubMenu
+              title={<QuestionCircleOutlined style={{ fontSize: "1.3rem" }} />}
+            >
+              <Menu.Item style={{margin:"0px"}} >Contact supplier</Menu.Item>
+              <Menu.Item style={{margin:"0px"}}>How to add product</Menu.Item>
+              <Menu.Item>Creating account</Menu.Item>
+              <Menu.Item>Tracking your order</Menu.Item>
+
+
+            </SubMenu>
+            <SubMenu
+                style={{ marginBottom: "0.3rem", borderRadius: "10px", marginLeft:"0" }}
+                title={<SettingOutlined style={{ fontSize: "1.3rem" }} />}
+              >
+            <Menu.Item icon={<PlusOutlined/>}>
+              <Link to="/products/add">
+              Add Product
+              </Link>
+               
+              </Menu.Item>
+
+
+              </SubMenu>
             <SubMenu title={<Avatar   src={userInfo.avatar} style={{marginBottom:"0.8rem", width:"30px", height:"inherit"}} />}>
 
               <Menu.Item>{userInfo.email}</Menu.Item>

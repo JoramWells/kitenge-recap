@@ -122,6 +122,11 @@ export default function NavMobile(props) {
             <SubMenu
               title={<QuestionCircleOutlined style={{ fontSize: "1.3rem" }} />}
             >
+              <Menu.Item style={{margin:"0px"}} >Contact supplier</Menu.Item>
+              <Menu.Item style={{margin:"0px"}}>How to add product</Menu.Item>
+              <Menu.Item>Creating account</Menu.Item>
+              <Menu.Item>Tracking your order</Menu.Item>
+
 
             </SubMenu>
             <SubMenu title={<SettingOutlined style={{ fontSize: "1.3rem" }} />}>

@@ -191,7 +191,7 @@ function RightMenu(props) {
             onCancel={handleCancel}
           >
             {cartItems.map((product) => (
-              <Row justify="space-around" align="middle">
+              <Row justify="space-around" align="middle" key={product.id}>
                 <Col>
                   <Image
                     src={product.image}

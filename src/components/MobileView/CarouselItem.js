@@ -113,9 +113,8 @@ function CarouselItem(props) {
           <div>{error}</div>
         ) : (
           <>
-                    <Row justify="space-around" align="middle" gutter={[0, 16]}>
+                    <Row justify="space-around" align="middle" gutter={[0, 16]} style={{backgroundColor:"black"}}>
             {posts.map((item) => (
-              <>
                             <Col key={item.id}>
                 
                 <Card
@@ -125,7 +124,7 @@ function CarouselItem(props) {
                       src={item.image}
                       effect="blur"
                       alt="product-Image"
-                      style={{ width: "inherit" }}
+                      style={{ width: "18rem" }}
                     />
                   }
                   extra={
@@ -149,8 +148,7 @@ function CarouselItem(props) {
                     <b>ksh {item.price}</b>
                   </Text>
                 </Card>
-              </Col>
-                                {/* <Modal
+                {/* <Modal
                                 title="Product details"
                                 visible={visible}
                                 onOk={handleOk}
@@ -165,7 +163,8 @@ function CarouselItem(props) {
                                 </Row>
                                 
                               </Modal> */}
-              </>
+              </Col>
+                                
 
             ))}
           </Row>

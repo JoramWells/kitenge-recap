@@ -146,7 +146,7 @@ export default function CarouselHeader() {
         arrows={false}
       >
         {cats.map((product) => (
-          <Row justify="space-around" align="middle">
+          <Row justify="space-around" align="middle" key={product.id}>
             <Col>
               <Card
                 style={{ width: "200px" }}

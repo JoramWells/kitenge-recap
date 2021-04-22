@@ -32,18 +32,18 @@ const renderSkeleton = posts.map((post) => {
     <Col key={post}>
       <Form layout="vertical">
         <Form.Item>
-          <Skeleton.Input style={{ width: "200px", height: "150px" }} /> <br />
+          <Skeleton.Input style={{ width: "20rem", height: "150px" }} /> <br />
         </Form.Item>
 
         <Form.Item>
           <Skeleton.Input
-            style={{ width: "150px", height: "1rem" }}
+            style={{ width: "200px", height: "1rem" }}
             active={true}
           />
         </Form.Item>
         <Form.Item>
           <Skeleton.Input
-            style={{ width: "200px", height: "1rem" }}
+            style={{ width: "250px", height: "1rem" }}
             active={true}
           />
         </Form.Item>
@@ -98,12 +98,13 @@ function CarouselItem(props) {
 
   return (
     <>
-      {/* <CarouselHeader /> */}
 
       <div
         
         style={{ backgroundColor: "#F8F8F8", marginTop: "5rem" }}
       >
+      <CarouselHeader />
+
         {loading ? (
           <Row justify="space-around" align="middle">
             {renderSkeleton}

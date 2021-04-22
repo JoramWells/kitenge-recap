@@ -28,7 +28,7 @@ const responsive = {
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
-    items: 4,
+    items: 3,
   },
 };
 
@@ -54,30 +54,30 @@ export default function CarouselHeader() {
     <>
       <>
         {loading ? (
-          <Row justify="space-around" align="middle">
+          <Row justify="space-around" align="middle" style={{marginBottom:"5rem"}}>
             <Col>
               <Skeleton.Input
                 style={{
                   width: "70px",
                   borderRadius: "50px",
-                  margin: "1rem",
+                  margin: "0.5rem",
                 }}
               ></Skeleton.Input>
             </Col>
 
             <Col>
               <Skeleton.Input
-                style={{ width: "70px", borderRadius: "50px", margin: "1rem" }}
+                style={{ width: "70px", borderRadius: "50px", margin: "0.5rem" }}
               ></Skeleton.Input>
             </Col>
             <Col>
               <Skeleton.Input
-                style={{ width: "70px", borderRadius: "50px", margin: "1rem" }}
+                style={{ width: "70px", borderRadius: "50px", margin: "0.5rem" }}
               ></Skeleton.Input>
             </Col>
             <Col>
               <Skeleton.Input
-                style={{ width: "70px", borderRadius: "50px", margin: "1rem" }}
+                style={{ width: "70px", borderRadius: "50px", margin: "0.5rem" }}
               ></Skeleton.Input>
             </Col>
           </Row>
@@ -85,7 +85,7 @@ export default function CarouselHeader() {
           <div>{error}</div>
         ) : (
           <Row justify="space-around" align="middle">
-            <Col md={12} sm={2} style={{ padding: "0.5rem", margin: "1rem" }}>
+            <Col md={12} sm={12} xs={18} style={{ padding: "1rem", margin: "1rem" }}>
             <Carousel
               swipeable={false}
               draggable={false}

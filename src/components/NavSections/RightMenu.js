@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import { Menu, Space, Badge, Modal, Col, Row, Typography, Image,message, Button } from "antd";
 import Cookie from "js-cookie";
-import {withRouter,Link} from "react-router-dom"
+import {withRouter,Link, useHistory} from "react-router-dom"
 import {
   LoginOutlined,
   MailOutlined,
   SettingOutlined,
   ShoppingCartOutlined,
-  UnorderedListOutlined,
   UserAddOutlined,
-  UserOutlined,
 } from "@ant-design/icons";
 import { useSelector } from "react-redux";
 import Avatar from "antd/lib/avatar/avatar";
@@ -20,6 +18,7 @@ const cartItems = Cookie.getJSON("cartItems");
 
 
 function RightMenu(props) {
+  const history = useHistory()
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
   const [visible, setVisible] = useState(false);
@@ -37,7 +36,7 @@ function RightMenu(props) {
     setTimeout((
       message.success('Logged out successfully')
     ),2000)
-    props.history.push('/')
+    history.goBack()
   }
 
   const handleOk = () => {
@@ -49,7 +48,7 @@ function RightMenu(props) {
 
   if (!userInfo) {
     return (
-      <Menu mode="horizontal">
+      <Menu mode="horizontal" style={{paddingTop:"0.4rem"}}>
         <Menu.Item key="mail">
           <Link to="/login">
           <Button icon={<LoginOutlined style={{margin:"0px", fontSize:"1rem"}} />} style={{borderRadius:"50px"}}>Signin</Button>
@@ -72,11 +71,11 @@ function RightMenu(props) {
               <Badge count={0}>
                 <ShoppingCartOutlined
                   onClick={showModal}
-                  style={{ fontSize: "1.5rem", fontWeight: "bold" }}
+                  style={{ fontSize: "1.7rem"}}
                 />
               </Badge>
             </Menu.Item>
-            <SubMenu title={<Avatar src={userInfo.avatar} />}>
+            <SubMenu title={<Avatar src={userInfo.avatar} style={{width:"30px", height:"auto",marginBottom:"0.7rem"}} />}>
               {/* <Menu.Item style={{ paddingLeft: "85px", margin: "auto" }}>
                 <img
                   src={userInfo.avatar}

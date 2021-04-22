@@ -33,7 +33,7 @@ export default function SignIn(props) {
   }, [userInfo]);
 
   return (
-    <Row justify="space-around" align="middle" style={{ marginTop: "2rem" }}>
+    <Row justify="space-around" align="middle" style={{ marginTop: "2rem", marginBottom:"2rem" }}>
       <Card style={{ width: "25rem" }}>
         <Row justify="end">
           <Col>

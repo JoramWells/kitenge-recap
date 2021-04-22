@@ -29,7 +29,7 @@ function NavigationBar() {
     >
       <nav className="menu">
         <div className="menu__logo">
-        <Link href="/" style={{ paddingTop: "0.5rem",color:"#484848" }}>
+        <Link href="/" style={{ padding: "1rem",color:"#484848" }}>
                 <b>OnlineShop</b>
               </Link>
         </div>

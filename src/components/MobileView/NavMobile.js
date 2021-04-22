@@ -173,7 +173,7 @@ export default function NavMobile(props) {
           >
             <div className="menu__logo">
               <a href="/" style={{ paddingTop: "1.1rem", color:"#484848" }}>
-                <b>Online Shop</b>
+                <b>OnlineShop</b>
               </a>
             </div>
             <Menu
@@ -193,10 +193,10 @@ export default function NavMobile(props) {
                 }
               ></Menu.Item>
               <Menu.Item>
-                <Badge count={props.cart.length}>
+                <Badge count={cartItems.length}>
                   <ShoppingCartOutlined
                     onClick={showModal}
-                    style={{ fontSize: "1.5rem" }}
+                    style={{ fontSize: "1.5rem",margin:"0" }}
                   />
                 </Badge>
               </Menu.Item>

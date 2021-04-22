@@ -8,7 +8,6 @@ import {
   Rate,
   Form,
   Skeleton,
-  Popconfirm,
   message,
   Modal,
   Button,
@@ -20,7 +19,6 @@ import { listProducts } from "../../_actions/productActions";
 import {
   EllipsisOutlined,
   ShoppingCartOutlined,
-  ShoppingOutlined,
 } from "@ant-design/icons";
 import { addToCart } from "../../_actions/cartActions";
 const NavMobile = lazy(() => import("./NavMobile"));
@@ -138,7 +136,7 @@ function CarouselItem(props) {
                   onCancel={handleCancel}
                 >
                   <Row justify="space-around" align="middle">
-                  {item.description}
+                    {item.product_name}
                   </Row>
                   <Row justify="space-around" align="middle">
                   <Button icon={<ShoppingCartOutlined />} onClick={()=>productAddToCart(item.id, item.product_name)} style={{marginTop:"0.5rem"}}>Add to cart</Button>

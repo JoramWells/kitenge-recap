@@ -69,8 +69,8 @@ function RightMenu(props) {
       return (
         <Space>
           <Menu mode="horizontal">
-            <Menu.Item>
-              <Badge count={1}>
+            <Menu.Item style={{marginTop:"0rem"}}>
+              <Badge count={0} >
                 <ShoppingCartOutlined
                   onClick={showModal}
                   style={{ fontSize: "1.7rem", margin:"0"}}
@@ -78,7 +78,7 @@ function RightMenu(props) {
               </Badge>
             </Menu.Item>
             <SubMenu
-              title={<QuestionCircleOutlined style={{ fontSize: "1.3rem" }} />}
+              title={<QuestionCircleOutlined style={{ fontSize: "1.3rem",marginTop:"0" }} />}
             >
               <Menu.Item style={{margin:"0px"}} >Contact supplier</Menu.Item>
               <Menu.Item style={{margin:"0px"}}>How to add product</Menu.Item>
@@ -101,14 +101,8 @@ function RightMenu(props) {
 
               </SubMenu>
 
-            <SubMenu title={<Avatar src={userInfo.avatar} style={{width:"30px", height:"auto",marginBottom:"0.7rem"}} />}>
-              {/* <Menu.Item style={{ paddingLeft: "85px", margin: "auto" }}>
-                <img
-                  src={userInfo.avatar}
-                  alt="profile_pic"
-                  style={{ width: "25px", borderRadius: "50px" }}
-                />
-              </Menu.Item> */}
+            <SubMenu title={<Avatar src={userInfo.avatar} style={{width:"25px", height:"auto",marginBottom:"0.5rem", marginLeft:"0"}} />}>
+
               <Menu.Item>{userInfo.email}</Menu.Item>
               <Menu.Item onClick={()=>logout()}>Logout</Menu.Item>
             </SubMenu>

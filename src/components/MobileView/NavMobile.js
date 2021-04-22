@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import {
 
+  HomeOutlined,
   LoginOutlined,
   MailOutlined,
   QuestionCircleOutlined,
@@ -67,8 +68,8 @@ export default function NavMobile(props) {
         }}
       >
         <div className="menu__logo">
-        <Link href="/" style={{ paddingTop: "0.3rem", color:"#484848" }}>
-                <b>OnlineShop</b>
+        <Link href="/" style={{ color:"#484848" }}>
+                <HomeOutlined/>
               </Link>
         </div>
 
@@ -100,8 +101,8 @@ export default function NavMobile(props) {
           }}
         >
           <div className="menu__logo">
-          <a href="/" style={{ paddingTop: "1.1rem", color:"#484848" }}>
-                <b>Online Shop</b>
+          <a href="/" style={{  color:"#484848" }}>
+            <HomeOutlined/>
               </a>
           </div>
           <Menu
@@ -174,8 +175,8 @@ export default function NavMobile(props) {
             }}
           >
             <div className="menu__logo">
-              <a href="/" style={{ paddingTop: "1.1rem", color:"#484848" }}>
-                <b>OnlineShop</b>
+              <a href="/" style={{ color:"#484848" }}>
+                <HomeOutlined/>
               </a>
             </div>
             <Menu
@@ -184,7 +185,6 @@ export default function NavMobile(props) {
                 justifyContent: "space-between",
                 border: "0",
                 float: "right",
-                paddingTop: "0.5rem",
               }}
             >
               <Menu.Item

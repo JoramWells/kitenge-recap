@@ -14,7 +14,6 @@ import {
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import NumberFormat from "react-number-format";
-import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 
 const columns = [
   {

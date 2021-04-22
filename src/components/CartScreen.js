@@ -9,8 +9,7 @@ import {
   Image,
   Typography,
   Table,
-  Affix,
-  Radio,
+
 } from "antd";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
@@ -83,25 +82,7 @@ export default function CartScreen(props) {
   }, []);
   return (
     <div style={{ padding: "1rem" }}>
-      <Affix offsetTop={10} style={{ margin: "1rem" }}>
-        <Radio.Group>
-          <Radio.Button
-            onClick={back}
-            style={{ border: "0", backgroundColor: "whitesmoke" }}
-          >
-            <LeftOutlined style={{ color: "black" }} />
-          </Radio.Button>
-          <Radio.Button
-            onClick={forward}
-            style={{
-              border: "0",
-              backgroundColor: "whitesmoke",
-            }}
-          >
-            <RightOutlined style={{ color: "black" }} />
-          </Radio.Button>
-        </Radio.Group>
-      </Affix>
+
       {cartItems.length === 0 ? (
         <Row justify="space-around" align="middle" style={{ padding: "2rem" }}>
           <Col>

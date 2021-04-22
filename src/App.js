@@ -9,6 +9,8 @@ import PaymentScreen from "./components/Shipping/PaymentScreen";
 import PlaceOrderScreen from "./components/Shipping/PlaceOrderScreen";
 import Payments from "./components/Payments/Payments";
 import NavigationBar from "./components/NavigationBar";
+import NavMobile from "./components/MobileView/NavMobile";
+import DesktopNavbarMobile from "./components/DesktopNavbarMobile";
 const ManageProducts = lazy(() =>
   import("./components/Product/ManageProducts")
 );
@@ -43,7 +45,8 @@ function App() {
         }
       >
         <Router>
-          <NavigationBar/>
+          <DesktopNavbarMobile/>
+
           <Switch>
             <Route path="/" exact component={HomeRoutes} />
             <Route path="/login" exact component={Login} />

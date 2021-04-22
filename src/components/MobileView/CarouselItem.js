@@ -21,7 +21,6 @@ import {
   ShoppingCartOutlined,
 } from "@ant-design/icons";
 import { addToCart } from "../../_actions/cartActions";
-const NavMobile = lazy(() => import("./NavMobile"));
 const CarouselHeader = lazy(() => import("../Desktop/CarouselHeader"));
 
 const { Meta } = Card;
@@ -54,7 +53,6 @@ const renderSkeleton = posts.map((post) => {
 });
 
 function CarouselItem(props) {
-  const [user, setUser] = useState([]);
   const [cart1, setCart] = useState([]);
   const dispatch = useDispatch();
   const ProductList = useSelector((state) => state.productList);
@@ -100,22 +98,14 @@ function CarouselItem(props) {
     }
   };
 
-  useEffect(() => {
-    setUser(userInfo);
-    // setCart(cartItems)
 
-    dispatch(listProducts());
-
-    return () => {};
-  }, []);
 
   return (
     <>
-      <NavMobile user={user} cart={cart1} />
       <CarouselHeader />
 
       <div
-        className="mobile__carousel"
+        
         style={{ backgroundColor: "#F8F8F8", marginTop: "5rem" }}
       >
         {loading ? (

@@ -43,6 +43,8 @@ const columns = [
 const { SubMenu } = Menu;
 export default function NavMobile(props) {
   const cartItems = Cookie.getJSON("cartItems");
+  const userInfo = Cookie.getJSON("userInfo");
+
   const [visible, setVisible] = useState(false);
   const handleOk = () => {
     setVisible(false);
@@ -53,7 +55,7 @@ export default function NavMobile(props) {
   const showModal = () => {
     setVisible(true);
   };
-  if (!props.user) {
+  if (!userInfo) {
     return (
       <nav
         className="menu"
@@ -129,15 +131,15 @@ export default function NavMobile(props) {
               title={
                 <Avatar
                   src={
-                    props.user.avatar
-                      ? props.user.avatar
+                      userInfo.avatar
+                      ? userInfo.avatar
                       : `http://gravatar.com/avatar/${moment().unix()}?d=identicon`
                   }
                   style={{ width: "1.5rem", height: "auto", margin: "0px" }}
                 />
               }
             >
-              <Menu.Item>{props.user.email}</Menu.Item>
+              <Menu.Item>{userInfo.email}</Menu.Item>
               <Menu.Item
                 style={{ justifyContent: "space-around", display: "flex" }}
               >
@@ -205,13 +207,13 @@ export default function NavMobile(props) {
                 style={{ marginBottom: "0.4rem", borderRadius: "10px" }}
                 title={
                   <Avatar
-                    src={props.user.avatar}
+                    src={userInfo.avatar}
                     style={{ width: "1.5rem", height: "auto", margin: "0px" }}
                   />
                 }
               >
                 <Menu.Item style={{ margin: "0" }}>
-                  {props.user.email}
+                  {userInfo.email}
                 </Menu.Item>
                 <Menu.Item
                   style={{
@@ -238,7 +240,7 @@ export default function NavMobile(props) {
             {/* navbar */}
           </nav>
           <Modal visible={visible} onOk={handleOk} onCancel={handleCancel}>
-            <Table dataSource={props.cart} columns={columns} />
+            <Table dataSource={cartItems} columns={columns} />
 
             <Row align="middle" justifyContent="space-between">
               <Col>

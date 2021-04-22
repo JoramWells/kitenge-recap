@@ -67,9 +67,9 @@ export default function SignUp() {
       <Row
         justify="space-around"
         align="middle"
-        style={{ marginTop: "0.5rem" }}
+        style={{ marginBottom: "1rem" }}
       >
-        <Card style={{ width: "25rem" }}>
+        <Card style={{ width: "25rem", marginTop:"4rem" }}>
           <Row justify="space-between" align="middle">
             <Col>
               <Avatar src={avatar} style={{ margin: "0.3rem" }} />

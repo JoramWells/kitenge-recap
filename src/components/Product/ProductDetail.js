@@ -9,7 +9,6 @@ import * as Yup from "yup";
 //   getLatLng,
 // } from "react-places-autocomplete";
 import {
-  Affix,
   Row,
   Col,
   Typography,
@@ -129,26 +128,7 @@ export default function ProductDetail(props) {
 
   return (
     <>
-      <div style={{ margin: ".5rem" }}>
-        <Affix offsetTop={10}>
-          <Radio.Group>
-            <Radio.Button
-              style={{ border: "0", backgroundColor: "whitesmoke" }}
-            >
-              <LeftOutlined />
-            </Radio.Button>
-            <Radio.Button
-              onClick={forward}
-              style={{
-                border: "0",
-                backgroundColor: "whitesmoke",
-              }}
-            >
-              <RightOutlined />
-            </Radio.Button>
-          </Radio.Group>
-        </Affix>
-      </div>
+
 
       {/* ___________________________________________Login Modal______________________________________________ */}
       <Modal visible={isModalVisible} onCancel={handleCancel} onOk={handleOk}>

@@ -102,11 +102,11 @@ function CarouselItem(props) {
 
   return (
     <>
-      <CarouselHeader />
+      {/* <CarouselHeader /> */}
 
       <div
         
-        style={{ backgroundColor: "#F8F8F8", marginTop: "5rem" }}
+        style={{ backgroundColor: "#F8F8F8", marginTop: "2rem" }}
       >
         {loading ? (
           <Row justify="space-around" align="middle">

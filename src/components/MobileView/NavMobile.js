@@ -61,28 +61,29 @@ export default function NavMobile(props) {
       <nav
         className="menu"
         style={{
-          position: "fixed",
+          position: "sticky",
           display: "block",
           width: "100%",
           zIndex: "1",
+          top:"0"
         }}
       >
-        <div className="menu__logo">
+        <div className="menu__logo" style={{marginTop:"0.4rem"}}>
         <Link href="/" style={{ color:"#484848" }}>
-                <HomeOutlined/>
+                <b>Kitenge</b>
               </Link>
         </div>
 
         <Menu mode="horizontal" style={{ float: "right", border:"0" }}>
-          <Menu.Item>
+          <Menu.Item icon={<LoginOutlined style={{fontSize:"1rem", margin:"0px"}} />}>
             <Link to="/login">
-          <Button style={{borderRadius:"50px"}} icon={<LoginOutlined style={{fontSize:"1rem", margin:"0px"}} />}>Login</Button>
+              {"  "}Login
 
             </Link>
           </Menu.Item>
-          <Menu.Item>
+          <Menu.Item icon={<UserAddOutlined style={{fontSize:"1rem", margin:"0px"}} />}>
           <Link to="/register">
-            <Button style={{borderRadius:"50px"}} icon={<UserAddOutlined style={{fontSize:"1rem", margin:"0px"}} />}>Register</Button>
+            {"  "}Register
           </Link>
           </Menu.Item>
         </Menu>
@@ -94,21 +95,21 @@ export default function NavMobile(props) {
         <nav
           className="menu"
           style={{
-            position: "fixed",
+            position: "sticky",
             display: "block",
             width: "100%",
             zIndex: "1",
+            top:"0",
           }}
         >
-          <div className="menu__logo">
+          <div className="menu__logo" style={{marginTop:"0.5rem"}}>
           <a href="/" style={{  color:"#484848" }}>
-            <HomeOutlined/>
+           <b > Kitenge</b>
               </a>
           </div>
           <Menu
             mode="horizontal"
             style={{
-              justifyContent: "space-between",
               float: "right",
               border: "0",
             }}
@@ -123,9 +124,7 @@ export default function NavMobile(props) {
             >
               {" "}
             </SubMenu>
-            <SubMenu title={<SettingOutlined style={{ fontSize: "1.3rem" }} />}>
-              {" "}
-            </SubMenu>
+
 
             <SubMenu
               style={{ marginBottom: "0.4rem" }}
@@ -167,16 +166,16 @@ export default function NavMobile(props) {
           <nav
             className="menu"
             style={{
-              position: "fixed",
+              position: "sticky",
               display: "block",
               width: "100%",
               zIndex: "1",
               top: "0",
             }}
           >
-            <div className="menu__logo">
+            <div className="menu__logo" style={{marginTop:"0.5rem"}}>
               <a href="/" style={{ color:"#484848" }}>
-                <HomeOutlined/>
+                <b>Kitenge</b>
               </a>
             </div>
             <Menu
@@ -202,9 +201,12 @@ export default function NavMobile(props) {
                   />
                 </Badge>
               </Menu.Item>
+              <SubMenu title={<SettingOutlined style={{ fontSize: "1.3rem" }} />}>
+              {" "}
+            </SubMenu>
 
               <SubMenu
-                style={{ marginBottom: "0.4rem", borderRadius: "10px" }}
+                style={{ marginBottom: "0.3rem", borderRadius: "10px", marginLeft:"0" }}
                 title={
                   <Avatar
                     src={userInfo.avatar}

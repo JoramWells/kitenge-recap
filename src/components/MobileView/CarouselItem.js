@@ -53,7 +53,6 @@ const renderSkeleton = posts.map((post) => {
 });
 
 function CarouselItem(props) {
-  const [cart1, setCart] = useState([]);
   const dispatch = useDispatch();
   const ProductList = useSelector((state) => state.productList);
   const { posts, loading, error } = ProductList;
@@ -81,18 +80,15 @@ function CarouselItem(props) {
     setVisible(false);
   };
 
-  const productAddToCart = async (productId, product_name) => {
+  const productAddToCart = (productId, product_name) => {
     if (!userInfo) {
       message.warn("Redirecting to login page...");
       props.history.push("/login");
     } else {
-      setTimeout(
-        (await dispatch(addToCart(productId, 1, userInfo.name, userInfo.phone)),
-        setCart((prevState) => {
-          return { ...prevState, cartItems: prevState };
-        })),
-        2000
-      );
+      setTimeout(async()=>{
+        await dispatch(addToCart(productId, 1, userInfo.name, userInfo.phone))
+        
+      },2000)
 
       message.success(`${product_name} added to cart`);
     }
@@ -106,7 +102,7 @@ function CarouselItem(props) {
 
       <div
         
-        style={{ backgroundColor: "#F8F8F8", marginTop: "2rem" }}
+        style={{ backgroundColor: "#F8F8F8", marginTop: "5rem" }}
       >
         {loading ? (
           <Row justify="space-around" align="middle">
@@ -115,25 +111,12 @@ function CarouselItem(props) {
         ) : error ? (
           <div>{error}</div>
         ) : (
-          <Row justify="space-around" align="middle" gutter={[0, 16]}>
+          <>
+                    <Row justify="space-around" align="middle" gutter={[0, 16]}>
             {posts.map((item) => (
-              <Col key={item.id}>
-                <Modal
-                  title="Product details"
-                  visible={visible}
-                  onOk={handleOk}
-                  confirmLoading={confirmLoading}
-                  onCancel={handleCancel}
-                >
-                  <Row justify="space-around" align="middle">
-                    {item.product_name}
-                  </Row>
-                  <Row justify="space-around" align="middle">
-                  <Button icon={<ShoppingCartOutlined />} onClick={()=>productAddToCart(item.id, item.product_name)} style={{marginTop:"0.5rem"}}>Add to cart</Button>
-
-                  </Row>
-                  
-                </Modal>
+              <>
+                            <Col key={item.id}>
+                
                 <Card
                   style={{ width: "18rem",  }}
                   cover={
@@ -166,9 +149,30 @@ function CarouselItem(props) {
                   </Text>
                 </Card>
               </Col>
+                                {/* <Modal
+                                title="Product details"
+                                visible={visible}
+                                onOk={handleOk}
+                                confirmLoading={confirmLoading}
+                                onCancel={handleCancel}
+                              >
+                                <Row justify="space-around" align="middle">
+                                </Row>
+                                <Row justify="space-around" align="middle">
+                                <Button icon={<ShoppingCartOutlined />}  style={{marginTop:"0.5rem"}}>Add to cart</Button>
+              
+                                </Row>
+                                
+                              </Modal> */}
+              </>
+
             ))}
           </Row>
+
+          </>
+
         )}
+
       </div>
     </>
   );

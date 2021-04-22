@@ -9,7 +9,7 @@ import {
 import {  UploadOutlined } from "@ant-design/icons";
 
 
-export default function ManageProducts(props) {
+export default function ManageProducts() {
   const ProductList = useSelector((state) => state.productList);
   const { posts, loading, error } = ProductList;
 

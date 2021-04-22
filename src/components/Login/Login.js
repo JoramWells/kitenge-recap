@@ -33,13 +33,13 @@ export default function SignIn() {
   }, [userInfo]);
 
   return (
-    <Row justify="space-around" align="middle" style={{ marginTop: "2rem", marginBottom:"2rem" }}>
+    <Row justify="space-around" align="middle" style={{ marginTop: "5rem", marginBottom:"2rem" }}>
       <Card style={{ width: "25rem" }}>
         <Row justify="end">
           <Col>
             <CloseCircleOutlined
               className="close"
-              style={{ fontSize: "1.6rem", marginBottom: "1rem" }}
+              style={{ fontSize: "1.5rem", marginBottom: "1rem" }}
               onClick={closeHandler}
             />
           </Col>

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import {
 
-  HomeOutlined,
   LoginOutlined,
   MailOutlined,
+  PlusOutlined,
   QuestionCircleOutlined,
   SettingOutlined,
   ShoppingCartOutlined,
@@ -61,7 +61,7 @@ export default function NavMobile(props) {
       <nav
         className="menu"
         style={{
-          position: "sticky",
+          position: "fixed",
           display: "block",
           width: "100%",
           zIndex: "1",
@@ -69,7 +69,7 @@ export default function NavMobile(props) {
         }}
       >
         <div className="menu__logo" style={{marginTop:"0.4rem"}}>
-        <Link href="/" style={{ color:"#484848" }}>
+        <Link to="/" style={{ color:"#484848" }}>
                 <b>Kitenge</b>
               </Link>
         </div>
@@ -95,7 +95,7 @@ export default function NavMobile(props) {
         <nav
           className="menu"
           style={{
-            position: "sticky",
+            position: "fixed",
             display: "block",
             width: "100%",
             zIndex: "1",
@@ -122,9 +122,16 @@ export default function NavMobile(props) {
             <SubMenu
               title={<QuestionCircleOutlined style={{ fontSize: "1.3rem" }} />}
             >
-              {" "}
-            </SubMenu>
 
+            </SubMenu>
+            <SubMenu title={<SettingOutlined style={{ fontSize: "1.3rem" }} />}>
+            <Menu.Item icon={<PlusOutlined/>}>
+              <Link to="/products/add">
+              Add Product
+              </Link>
+               
+              </Menu.Item>
+            </SubMenu>
 
             <SubMenu
               style={{ marginBottom: "0.4rem" }}
@@ -166,7 +173,7 @@ export default function NavMobile(props) {
           <nav
             className="menu"
             style={{
-              position: "sticky",
+              position: "fixed",
               display: "block",
               width: "100%",
               zIndex: "1",
@@ -201,9 +208,36 @@ export default function NavMobile(props) {
                   />
                 </Badge>
               </Menu.Item>
-              <SubMenu title={<SettingOutlined style={{ fontSize: "1.3rem" }} />}>
-              {" "}
-            </SubMenu>
+
+
+              <SubMenu
+                style={{ marginBottom: "0.3rem", borderRadius: "10px", marginLeft:"0" }}
+                title={<SettingOutlined style={{ fontSize: "1.3rem" }} />}
+              >
+                <Menu.Item style={{ margin: "0" }}>
+                  {userInfo.email}
+                </Menu.Item>
+                <Menu.Item
+                  style={{
+                    justifyContent: "space-around",
+                    display: "flex",
+                    margin: "0",
+                  }}
+                >
+                  <Button style={{ borderRadius: "50px" }}>
+                    <Link to="/register">Manage account</Link>
+                  </Button>
+                </Menu.Item>
+                <Menu.Item
+                  style={{
+                    justifyContent: "space-around",
+                    display: "flex",
+                    margin: "0",
+                  }}
+                >
+                  Logout
+                </Menu.Item>
+              </SubMenu>
 
               <SubMenu
                 style={{ marginBottom: "0.3rem", borderRadius: "10px", marginLeft:"0" }}

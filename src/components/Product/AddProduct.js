@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { saveProduct } from "../../_actions/productActions";
-import { CaretRightOutlined, UploadOutlined } from "@ant-design/icons";
+import { CaretRightOutlined, CloseCircleOutlined, UploadOutlined } from "@ant-design/icons";
+import {useHistory} from 'react-router-dom'
 
 import {
   Row,
@@ -11,15 +12,16 @@ import {
   Button,
   message,
   Upload,
-  Card
+  Card,
+  Col
 } from "antd";
 
 
 
-const { Title } = Typography;
+
 
 export default function AddProduct(props) {
-  
+  const history = useHistory()
   const [name, setName] = useState("");
   const [shop, setShop] = useState("");
   const [price, setPrice] = useState("");
@@ -28,7 +30,10 @@ export default function AddProduct(props) {
   const [description, setDescription] = useState("");
 
   const dispatch = useDispatch();
-
+  const { Title } = Typography;
+  const closeHandler = () => {
+    history.goBack();
+  };
   const prop = {
     name: "file",
     listType: "picture",
@@ -80,9 +85,20 @@ export default function AddProduct(props) {
   return (
     <Row justify="space-around" align="middle" style={{ marginTop: "4rem", marginBottom:"3rem" }}>
        <Card style={{width:"25rem"}}>
-         <Title level={3}>
-           Add product
-         </Title>
+          <Row justify="space-between" align="middle">
+            <Col>
+            <Title level={3}>
+              Add product
+            </Title>
+            </Col>
+            <Col>
+              <CloseCircleOutlined
+                className="close"
+                style={{ fontSize: "1.5rem" }}
+                onClick={closeHandler}
+              />
+            </Col>
+          </Row>
  
         <Form layout="vertical" size="large" encType="multipart/form-data">
           <Form.Item

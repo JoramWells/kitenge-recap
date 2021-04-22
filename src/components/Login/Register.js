@@ -55,7 +55,6 @@ export default function SignUp() {
     setPassword("JoramWells18.");
     // props.history.push('/')
     console.log(response.tokenObj.access_token);
-    console.log(response);
   };
   const responseFailure = (response) => {
     console.log(response);
@@ -69,7 +68,7 @@ export default function SignUp() {
         align="middle"
         style={{ marginBottom: "1rem" }}
       >
-        <Card style={{ width: "25rem", marginTop:"4rem" }}>
+        <Card style={{ width: "25rem", marginTop:"5rem" }}>
           <Row justify="space-between" align="middle">
             <Col>
               <Avatar src={avatar} style={{ margin: "0.3rem" }} />

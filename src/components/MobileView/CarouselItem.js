@@ -11,7 +11,7 @@ import {
   notification,
   Popconfirm,
   message,
-  Switch
+  
 } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -85,6 +85,7 @@ function CarouselItem(props) {
       message.success(`${product_name} added to cart`);
     }
   };
+
 
   useEffect(() => {
     setUser(userInfo);

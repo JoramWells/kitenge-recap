@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import {
 
+  LoginOutlined,
   MailOutlined,
   QuestionCircleOutlined,
   SettingOutlined,
   ShoppingCartOutlined,
+  UserAddOutlined,
 } from "@ant-design/icons";
 import { Menu, Badge, Col, Image, Row, Modal, Table, Button } from "antd";
 import Avatar from "antd/lib/avatar/avatar";
@@ -63,17 +65,22 @@ export default function NavMobile(props) {
         }}
       >
         <div className="menu__logo">
-        <a href="/" style={{ paddingTop: "1.1rem", color:"#484848" }}>
-                <b>Online Shop</b>
-              </a>
+        <Link href="/" style={{ paddingTop: "0.3rem", color:"#484848" }}>
+                <b>OnlineShop</b>
+              </Link>
         </div>
 
         <Menu mode="horizontal" style={{ float: "right", border:"0" }}>
           <Menu.Item>
-            <a href="/login">Login</a>
+            <Link to="/login">
+          <Button style={{borderRadius:"50px"}} icon={<LoginOutlined style={{fontSize:"1rem", margin:"0px"}} />}>Login</Button>
+
+            </Link>
           </Menu.Item>
           <Menu.Item>
-            <a href="/register">Register</a>
+          <Link to="/register">
+            <Button style={{borderRadius:"50px"}} icon={<UserAddOutlined style={{fontSize:"1rem", margin:"0px"}} />}>Register</Button>
+          </Link>
           </Menu.Item>
         </Menu>
       </nav>

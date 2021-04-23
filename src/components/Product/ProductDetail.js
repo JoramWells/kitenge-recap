@@ -33,10 +33,8 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import RecentItemsBar from "../RecentItemsBar";
 import { signin } from "../../_actions/userActions";
 import {
-  LeftOutlined,
   LockOutlined,
   MailOutlined,
-  RightOutlined,
 } from "@ant-design/icons";
 
 const { Meta } = Card;
@@ -105,9 +103,7 @@ export default function ProductDetail(props) {
     props.history.push("/register");
   };
 
-  const tailLayout = {
-    wrapperCol: { offset: 8, span: 16 },
-  };
+
 
   const handleOk = () => {
     setIsModalVisible2(false);
@@ -274,7 +270,7 @@ export default function ProductDetail(props) {
                           block
                           style={{ border: "none" }}
                         >
-                          <Title level={5}>LOGIN!</Title>
+                          LOGIN!
                         </Button>
                       </Form.Item>
                     </Form>
@@ -286,7 +282,7 @@ export default function ProductDetail(props) {
         </Row>
       </Modal>
 
-      <Col style={{ padding: "20px" }}>
+      <main style={{ padding: "20px" }}>
         {loading ? (
           <Row
             justify="space-around"
@@ -325,7 +321,7 @@ export default function ProductDetail(props) {
               <Image
                 src={product.image}
                 alt="shoes again"
-                style={{ width: "300px" }}
+                style={{ width: "300px", height:"auto" }}
               />
             </Col>
 
@@ -474,7 +470,7 @@ export default function ProductDetail(props) {
             </Carousel>
           </div>
         )}
-      </Col>
+      </main>
     </>
   );
 }

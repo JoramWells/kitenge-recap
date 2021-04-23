@@ -1,6 +1,7 @@
-import React from "react";
-import NavMobile from "./MobileView/NavMobile";
-import NavigationBar from "./NavigationBar";
+import React,{lazy} from "react";
+const NavigationBar = lazy(() => import("./NavigationBar"));
+const NavMobile = lazy(() => import("./MobileView/NavMobile"));
+
 
 export default function DesktopNavbarMobile() {
   return (

@@ -1,6 +1,7 @@
-import React from "react";
+import React,{lazy} from "react";
 // import CarouselHeader from './Desktop/CarouselHeader'
-import DesktopMobile from './DesktopMobile'
+const DesktopMobile = lazy(() => import("./DesktopMobile"));
+
 
 export default function HomeRoutes() {
   return (

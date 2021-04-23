@@ -66,7 +66,7 @@ export default function Footer() {
           <Title level={4} style={{ color: "white", textAlign: "center" }}>
             Payments
           </Title>
-          <img src={mpesa} alt="dkjskaljdklas" width="180px" />
+          <img src={mpesa} alt="mpesa logo" width="180px" height="auto" />
         </Col>
       </Row>
       <div

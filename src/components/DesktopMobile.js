@@ -1,6 +1,8 @@
-import React from "react";
-import CarouselItems from "./Desktop/CarouselItems";
-import CarouselItem from "./MobileView/CarouselItem";
+import React,{lazy} from "react";
+const CarouselItem = lazy(() => import("./MobileView/CarouselItem"));
+const CarouselItems = lazy(() => import("./Desktop/CarouselItems"));
+
+
 
 export default function DesktopMobile() {
   return (

@@ -1,4 +1,4 @@
-import React, { useEffect, lazy, useState } from "react";
+import React, {  lazy, useState } from "react";
 import { withRouter } from "react-router-dom";
 import {
   Row,
@@ -18,7 +18,6 @@ import { Link } from "react-router-dom";
 import { listProducts } from "../../_actions/productActions";
 import {
   EllipsisOutlined,
-  ShoppingCartOutlined,
 } from "@ant-design/icons";
 import { addToCart } from "../../_actions/cartActions";
 const CarouselHeader = lazy(() => import("../Desktop/CarouselHeader"));

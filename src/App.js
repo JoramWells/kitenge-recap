@@ -5,15 +5,14 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { LoadingOutlined } from "@ant-design/icons";
 // import Footer from "./components/Footer";
 // import Top from "./components/Top";
-import PaymentScreen from "./components/Shipping/PaymentScreen";
-import PlaceOrderScreen from "./components/Shipping/PlaceOrderScreen";
-import Payments from "./components/Payments/Payments";
-import NavigationBar from "./components/NavigationBar";
-import NavMobile from "./components/MobileView/NavMobile";
-import DesktopNavbarMobile from "./components/DesktopNavbarMobile";
+
 const ManageProducts = lazy(() =>
   import("./components/Product/ManageProducts")
 );
+const PaymentScreen = lazy(() => import("./components/Shipping/PaymentScreen"));
+const PlaceOrderScreen = lazy(() => import("./components/Shipping/PlaceOrderScreen"));
+const Payments = lazy(() => import("./components/Payments/Payments"));
+const DesktopNavbarMobile = lazy(() => import("./components/DesktopNavbarMobile"));
 
 
 const ShippingScreen = lazy(() =>

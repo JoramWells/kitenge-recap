@@ -144,3 +144,11 @@
 .close{
   color: #404040;
 }
+
+.skip-link:focus{
+  border:solid 1px #fdba45;
+  border-radius: 50px;
+  padding: 0px;
+  
+}
+

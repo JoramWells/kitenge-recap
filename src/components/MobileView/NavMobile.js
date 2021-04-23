@@ -248,7 +248,7 @@ export default function NavMobile(props) {
                     margin: "0",
                   }}
                 >
-                  <Button style={{ borderRadius: "50px" }}>
+                  <Button style={{ borderRadius: "50px"}}>
                     <Link to="/register">Manage account</Link>
                   </Button>
                 </Menu.Item>

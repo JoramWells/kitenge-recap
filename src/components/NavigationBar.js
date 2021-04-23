@@ -21,15 +21,15 @@ function NavigationBar() {
       style={{
         zIndex: 1,
         width: "100%",
-        position: "sticky",
+        position: "fixed",
         top: "0px",
         display: "block",
       }}
       className="desktop__navbar"
     >
       <nav className="menu">
-        <div className="menu__logo">
-        <Link to="/" style={{ padding: "1rem",color:"#484848" }}>
+        <div className="menu__logo skip-link">
+        <Link to="/" style={{ padding: "1rem",color:"#484848" }} className="skip-link">
                 <b>OnlineShop</b>
               </Link>
         </div>

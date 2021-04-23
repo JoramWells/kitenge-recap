@@ -97,9 +97,8 @@ function CarouselItem(props) {
 
 
   return (
-    <>
 
-      <div
+      <main
         
         style={{ backgroundColor: "#F8F8F8", marginTop: "5rem" }}
       >
@@ -173,8 +172,7 @@ function CarouselItem(props) {
 
         )}
 
-      </div>
-    </>
+      </main>
   );
 }
 

@@ -11,13 +11,13 @@ import RecentItemsBar from '../RecentItemsBar'
 
 const { Text } = Typography;
 const { Meta } = Card;
-const posts = [1, 2, 3, 4, 5];
-const renderSkeleton = posts.map((post, index) => {
+const posts = [1, 2, 3, 4];
+const renderSkeleton = posts.map(( index) => {
   return (
     <Col key={index}>
       <Form layout="vertical">
         <Form.Item>
-          <Skeleton.Input style={{ width: "200px", height: "150px" }} /> <br />
+          <Skeleton.Input style={{ width: "16rem", height: "150px" }} /> <br />
         </Form.Item>
 
         <Form.Item>
@@ -45,7 +45,7 @@ const responsive = {
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
-    items: 5,
+    items: 4,
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
@@ -67,7 +67,7 @@ export default function CarouselItems() {
     return () => {};
   }, []);
   return (
-    <div style={{ padding: "20px" }}>
+    <main style={{ padding: "20px" }}>
       <CarouselHeader/>
       <RecentItemsBar title="Available Now!!"/>
       {loading ? (
@@ -90,9 +90,10 @@ export default function CarouselItems() {
           ssr={true} // means to render carousel on server-side.
           infinite={true}
           autoPlay={true}
+          
         >
           {posts.map((product) => (
-            <Row key={product.id} justify="space-around" align="middle">
+            <Row key={product.id} justify="space-around" align="middle"   >
               <Col>
                 <Link
                   to={`/product-detail/${product.id}/?category=${product.category}`}
@@ -100,15 +101,17 @@ export default function CarouselItems() {
                 >
                   <Card
                     style={{
-                      height: "300px",
                       border: "0",
+                      width:"16rem",
+                      height:"300px",
+                      
                     }}
                     cover={
                       <LazyLoadImage
                         src={product.image}
                         effect="blur"
                         alt="productimage"
-                        style={{ width: "200px", height: "inherit" }}
+                        style={{width:"auto", height:"auto", maxWidth: "15.8rem", maxHeight: "10.9rem", display:"flex", margin:"auto" }}
                         // visibleByDefault={product.image}
                       />
                     }
@@ -128,6 +131,6 @@ export default function CarouselItems() {
           ))}
         </Carousel>
       )}
-    </div>
+    </main>
   );
 }

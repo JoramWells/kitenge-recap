@@ -21,7 +21,7 @@ function NavigationBar() {
       style={{
         zIndex: 1,
         width: "100%",
-        position: "fixed",
+        position: "static",
         top: "0px",
         display: "block",
       }}

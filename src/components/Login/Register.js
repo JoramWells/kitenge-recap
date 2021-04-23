@@ -5,6 +5,7 @@ import { register } from "../../_actions/userActions";
 import { GoogleLogin } from "react-google-login";
 import PhoneInput from "react-phone-input-2";
 import { useHistory } from "react-router-dom";
+import axios from 'axios'
 import { Row, Col, Form, Input, Button, Avatar, Card, message } from "antd";
 import {
   CloseCircleOutlined,
@@ -47,14 +48,15 @@ export default function SignUp() {
     }
   };
 
-  const responseSuccess = (response) => {
+  const responseSuccess = async (response) => {
     setName(response.profileObj.name);
     setEmail(response.profileObj.email);
     setAvatar(response.profileObj.imageUrl);
 
     setPassword("JoramWells18.");
     // props.history.push('/')
-    console.log(response.tokenObj.access_token);
+    console.log(response.tokenObj);
+     await axios.post('/getToken', response.tokenObj.id_token)
   };
   const responseFailure = (response) => {
     console.log(response);
@@ -183,7 +185,6 @@ export default function SignUp() {
                 buttonText="Sign in with Google"
                 onSuccess={responseSuccess}
                 onFailure={responseFailure}
-                isSignedIn={true}
                 style={{ display: "block" }}
               />
             </Form.Item>

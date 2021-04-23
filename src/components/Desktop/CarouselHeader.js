@@ -54,7 +54,16 @@ export default function CarouselHeader() {
     <>
       <>
         {loading ? (
-          <Row justify="space-around" align="middle" style={{marginBottom:"5rem"}}>
+          <Row justify="space-around" align="middle" style={{marginTop:"3rem"}} span={6} >
+            <Col>
+              <Skeleton.Input
+                style={{
+                  width: "70px",
+                  borderRadius: "50px",
+                  margin: "0.5rem",
+                }}
+              ></Skeleton.Input>
+            </Col>
             <Col>
               <Skeleton.Input
                 style={{
@@ -124,16 +133,16 @@ export default function CarouselHeader() {
         className="carousel__header"
       >
         <Col>
-          <Image src={a2} width="250px" alt="shoes_img" />
+          <Image src={a2} width="200px" height="auto" alt="shoes_img" />
         </Col>
         <Col>
-          <Image src={a4} width="250px" alt="shoes_img" />
+          <Image src={a4} width="200px" height="auto" alt="shoes_img" />
         </Col>
         <Col>
-          <Image src={a3} width="250px" alt="shoes_img" />
+          <Image src={a3} width="200px" height="auto" alt="shoes_img" />
         </Col>
         <Col>
-          <Image src={a3} width="250px" alt="shoes_img" />
+          <Image src={a3} width="200px" height="auto" alt="shoes_img" />
         </Col>
       </Row>
       <Carousel
@@ -144,13 +153,14 @@ export default function CarouselHeader() {
         autoPlay={true}
         renderButtonGroupOutside={true}
         arrows={false}
+        
       >
         {cats.map((product) => (
           <Row justify="space-around" align="middle" key={product.id}>
             <Col>
               <Card
-                style={{ width: "200px" }}
-                cover={<img alt="sjdksjdl" src={product.image} />}
+                style={{ width: "18rem" }}
+                cover={<img alt="category image"  src={product.image} style={{width:"auto", height:"auto",maxWidth:"18rem", maxHeight:"12rem"}} />}
               >
                 <Meta title={product.product_name} description={product.shop} />
                 <Title level={5}>{product.price}</Title>

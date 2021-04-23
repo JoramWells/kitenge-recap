@@ -112,18 +112,18 @@ function CarouselItem(props) {
           <div>{error}</div>
         ) : (
           <>
-                    <Row justify="space-around" align="middle" gutter={[0, 16]} style={{backgroundColor:"black"}}>
+                    <Row justify="space-around" align="middle" gutter={[0, 16]}>
             {posts.map((item) => (
                             <Col key={item.id}>
                 
                 <Card
-                  style={{ width: "18rem",  }}
+                  style={{ width: "18rem", height:"auto"  }}
                   cover={
                     <LazyLoadImage
                       src={item.image}
                       effect="blur"
                       alt="product-Image"
-                      style={{ width: "18rem" }}
+                      style={{maxHeight:"12rem", maxWidth: "18rem",width:"auto", height:"auto", display:"flex", margin:"auto" }}
                     />
                   }
                   extra={
